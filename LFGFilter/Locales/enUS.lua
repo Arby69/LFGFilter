@@ -135,7 +135,7 @@ L["Old Hillsbrad Foothills"] = "Old Hillsbrad Foothills"
 L["HF-Tokens"] = {}
 
 L["Sethekk Halls"] = "Sethekk Halls"
-L["SETH-Tokens"] = {}
+L["SH-Tokens"] = {}
 
 L["Steamvault"] = "Steamvault"
 L["SV-Tokens"] = {}
@@ -144,7 +144,7 @@ L["Shadow Labyrinth"] = "Shadow Labyrinth"
 L["SL-Tokens"] = {}
 
 L["Shattered Halls"] = "Shattered Halls"
-L["SH-Tokens"] = {}
+L["SHH-Tokens"] = {}
 
 L["Black Morass"] = "Black Morass"
 L["BM-Tokens"] = {}

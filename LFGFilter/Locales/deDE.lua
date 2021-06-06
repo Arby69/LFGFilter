@@ -129,14 +129,14 @@ if (L) then
 	L["MANA-Tokens"] = { "mg", "gruft", "man.*gr%a*", "mana" }
 
 	L["Auchenai Crypts"] = "Auchenaikrypta"
-	L["AC-Tokens"] = { "ak", "%a*krypta?", "auche%a*" }
+	L["AC-Tokens"] = { "ak", "%a*krypta?", "auche%a*", "crypta?" }
 
 	L["Old Hillsbrad Foothills"] = "Vorgebirge des alten Hügellands"
 	L["HF-Tokens"] = { "hdz1?", "alt.*huegell%a*", "zeit.*1" }
 	L["HF-AntiTokens"] = { "hdz.*2" }
 
 	L["Sethekk Halls"] = "Sethekkhallen"
-	L["SETH-Tokens"] = { "sethekk", "s%a*hall%a*", "se%a*ek+" }
+	L["SH-Tokens"] = { "sethekk", "set%a*hall%a*", "se%a*ek+" }
 
 	L["Steamvault"] = "Dampfkammer"
 	L["SV-Tokens"] = { "dampf%a*" }
@@ -145,7 +145,7 @@ if (L) then
 	L["SL-Tokens"] = { "schlab%a*", "schattenl%a*" }
 
 	L["Shattered Halls"] = "Zerschmetterte Hallen"
-	L["SH-Tokens"] = { "zh", "zersch.*hallen?" }
+	L["SHH-Tokens"] = { "zh", "zersch.*hallen?" }
 
 	L["Black Morass"] = "Der Schwarze Morast"
 	L["BM-Tokens"] = { "morast", "hdz.*2", "zeit.*2" }

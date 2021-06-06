@@ -68,16 +68,24 @@ local function filterFunc(self, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
 		if (hasbit(filter, LFGFilter.Filters.ADD_LFGLFM_TAG)) then
 			if (hasLfm) then
 				if (addColor) then 
-					lfglfmTag = "|cff80ff20[LFM]|r "
+					lfglfmTag = "|cff80ff20[LFM]|r"
 				else
-					lfglfmTag = "[LFM] "
+					lfglfmTag = "[LFM]"
 				end
 			elseif (hasLfg) then
 				if (addColor) then
-					lfglfmTag = "|cff0040ff[LFG]|r "
+					lfglfmTag = "|cff0040ff[LFG]|r"
 				else
-					lfglfmTag = "[LFG] "
+					lfglfmTag = "[LFG]"
 				end
+			end
+		end
+		hcTag = ""
+		if ishero then
+			if addColor then
+				hcTag = "|cffff2020[HC]|r"
+			else
+				hcTag = "[HC]"
 			end
 		end
 		if ((addTags and (matchLevel > 1)) or (addIrrelevant and (matchLevel < 2))) then
@@ -96,7 +104,7 @@ local function filterFunc(self, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
 				end
 			end
 		end
-		local text = grey .. lfglfmTag .. names .. " " .. arg1
+		local text = grey .. lfglfmTag .. " " .. (hcTag .. names .. " " .. arg1):trim()
 		return false, text, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17
 
 --		if (filter == LFGFilter.Filters.AddDungeonName or filter == LFGFilter.Filters.AddIfRelevant) then

@@ -1,0 +1,8 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Include file="templates.xml"/>
+	<Script file="frame.lua"/>
+	<Include file="frame.xml"/>
+	<Script file="gui.lua"/>
+</Ui>

@@ -1,0 +1,11 @@
+## Interface: 20501
+## Title: LFGFilter
+## Version: 1.0
+## Author: Arby
+
+libs.xml
+Locales\locales.xml
+main.lua
+config.lua
+src\src.xml
+gui\gui.xml

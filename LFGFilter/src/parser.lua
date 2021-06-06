@@ -22,8 +22,9 @@ function LFGFilter:ParseMessage(message)
 				local hasLfg = LFGFilter.MessageHasToken(lowerMessage, self.LfgTags) 
 				local hasLfm = LFGFilter.MessageHasToken(lowerMessage, self.LfmTags) 
 				local dungeons, matchLevel = self:GetMatchingDungeons(lowerMessage)
-				local ishero = self:MessageHasToken(lowerMessage, self.HeroTags)
-				if (hasLfm or hasRole or hasLfg) then
+				local ishero = LFGFilter.MessageHasToken(lowerMessage, self.HeroTags)
+				local isQuest = LFGFilter.IsQuest(message)
+				if isQuest == false and (hasLfm or hasRole or hasLfg) then
 					if (#dungeons == 0) then
 						table.insert(dungeons, "Custom")
 						matchLevel = 3
@@ -65,8 +66,11 @@ function LFGFilter:DefineTokens()
 end
 
 function LFGFilter.IsQuest(message)
-	if message and (string.find(message, "|Hquestie:")) then return true end
-	return false
+	if message then 
+		if string.find(message, "%[(..-) %((%d+)%)%]") then return true end -- this is the pattern questie detects to insert its own link
+		if string.find(message, "%|Hquestie:") then return true end         -- this is when questie has already inserted its own link
+	end 
+	return false -- no quest in chat line detected
 end
 
 function LFGFilter.MessageHasToken(message, tokens)

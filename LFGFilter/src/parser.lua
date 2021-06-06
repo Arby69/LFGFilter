@@ -24,13 +24,15 @@ function LFGFilter:ParseMessage(message)
 				local dungeons, matchLevel = self:GetMatchingDungeons(lowerMessage)
 				local ishero = LFGFilter.MessageHasToken(lowerMessage, self.HeroTags)
 				local isQuest = LFGFilter.IsQuest(message)
-				if isQuest == false and (hasLfm or hasRole or hasLfg) then
-					if (#dungeons == 0) then
+				if isQuest then
+					matchLevel = 3
+				else
+					if #dungeons == 0 and (hasLfm or hasRole or hasLfg) then
 						table.insert(dungeons, "Custom")
 						matchLevel = 3
 					end
 				end
-				if (#dungeons > 0 or matchLevel == 3) then
+				if (#dungeons > 0 or isQuest) then
 					--local entry = LFGChatScannerGroupEntry(sender, message, channel, dungeons)
 					--LFGChatScanner.EventBus:PublishEvent(LFGChatScanner.Config.Events.ChatAnnouncementFound, entry)
 					return true, hasLfm, hasLfg, dungeons, matchLevel, ishero

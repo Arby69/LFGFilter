@@ -148,7 +148,7 @@ if (L) then
 	L["SHH-Tokens"] = { "zh", "zersch.*hallen?" }
 
 	L["Black Morass"] = "Der Schwarze Morast"
-	L["BM-Tokens"] = { "morast", "hdz.*2", "zeit.*2" }
+	L["BM-Tokens"] = { "mor+ast", "hdz.*2", "zeit.*2" }
 
 	L["Botanica"] = "Botanica"
 	L["BOT-Tokens"] = { }

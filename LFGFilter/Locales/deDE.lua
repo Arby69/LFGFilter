@@ -1,4 +1,4 @@
-local L = LibStub("AceLocale-3.0"):NewLocale("LFGFilter", "deDE")
+local L = _G.LibStub("AceLocale-3.0"):NewLocale("LFGFilter", "deDE")
 
 if (L) then
 	L["Select Dungeon"] = "Dungeon auswählen"

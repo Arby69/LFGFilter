@@ -139,7 +139,7 @@ if (L) then
 	L["SH-Tokens"] = { "sethekk", "set%a*hall%a*", "se%a*ek+" }
 
 	L["Steamvault"] = "Dampfkammer"
-	L["SV-Tokens"] = { "dampf%a*" }
+	L["SV-Tokens"] = { "dk", "dampf%a*" }
 
 	L["Shadow Labyrinth"] = "Schattenlabyrinth"
 	L["SL-Tokens"] = { "schlab%a*", "schattenl%a*" }

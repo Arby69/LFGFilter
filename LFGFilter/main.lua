@@ -12,8 +12,7 @@ LFGFilter.Filters = {
 	GREY_IRRELEVANT = 8,
 	ADD_LFGLFM_TAG = 16,
 	ADD_DUNGEON_TAGS = 32,
-	ADD_QUESTS = 64,
-	ADD_HEROIC = 128,
+	ADD_IRRELEVANT = 64,
 }
 
 function LFGFilter:OnInitialize()
@@ -30,94 +29,80 @@ end
 
 local init = false
 local function filterFunc(self, event, arg1, ...)
-	local _, _, channelname, playername, _, _, _, channelbasename, _, _, playerId = ...
-
-	local found, isquest, hasLfm, hasLfg, ishero, dungeons = LFGFilter:ParseMessage(arg1)
-	if found then
-
-		-- Keep track of group requests so we could enlist them in a frame, sort, filter and so on
---		if (dungeons and #dungeons > 0) then
---			local group = {
---				Player = playername,
---				Dungeons = dungeons,
---				Message = arg1,
---				Channel = channelbasename,
---				LastUpdate = GetTime(),
---				Heroic = ishero,
---			}
---			--LFGFilter:DungeonGroupFound(playername, dungeons, arg1, channelbasename, ishero)
---		end
-
-		local hasRelevant = false
-		for _, dungeon in pairs(dungeons) do 
-			if (dungeon) then
-				local d = LFGFilter:GetDifficulty(dungeon, ishero)
-				if d > 1 and d < 5 then
-					hasRelevant = true
-					break
-				end
-			end
+	local _, _, arg4, arg5, _, _, _, arg9, _, _, arg12 = ...
+	local found, hasLfm, hasLfg, dungeons, matchLevel, ishero = LFGFilter:ParseMessage(arg1)
+	if (found) then
+		--if (lastMsgId ~= arg11) then
+		if (dungeons and #dungeons > 0) then
+			--lastMsgId = arg11
+			local playerId = arg12
+			local playername = arg5:SplitString("-")[1] 
+			local channelname = arg4
+			local channelbasename = arg9
+			-- TODO: fire "dungeon found" event and store info in table with playerId as key
+			local group = {
+				Player = playername,
+				Dungeons = dungeons,
+				Message = arg1,
+				Channel = channelbasename,
+				LastUpdate = GetTime(),
+				Heroic = ishero,
+			}
 		end
-
 		local filter = LFGFilter.Config.Filter
-
-		-- remove chatline from chat when a lfg/lfm request is found
-		if hasbit(filter, LFGFilter.Filters.REMOVE_FOUND) then return true end
-		-- keep chatline unchanged for quests
-		if hasbit(filter, LFGFilter.Filters.ADD_QUESTS) == false and isquest then return end 
-		-- remove chatline from chat when dungeon is too low (grey) or too high (red)
-		if hasbit(filter, LFGFilter.Filters.REMOVE_IRRELEVANT) and (hasRelevant == false) then return true end
-
-		local useGrey = hasbit(filter, LFGFilter.Filters.GREY_IRRELEVANT) and (hasRelevant == false)
-		local addColor = hasbit(filter, LFGFilter.Filters.ADD_COLOR) and (useGrey == false)
+		local lfglfmTag = "" -- lfg or lfm text to set at the beginning of line
+		local names = ""
 		local grey = ""
-		if useGrey then
+		if hasbit(filter, LFGFilter.Filters.REMOVE_IRRELEVANT) and matchLevel < 2 then return true end
+		if hasbit(filter, LFGFilter.Filters.REMOVE_FOUND) and matchLevel > 1 then return true end
+		local useGrey = hasbit(filter, LFGFilter.Filters.GREY_IRRELEVANT) and matchLevel < 2
+		local addColor = useGrey == false and hasbit(filter, LFGFilter.Filters.ADD_COLOR)
+		local addTags = hasbit(filter, LFGFilter.Filters.ADD_DUNGEON_TAGS)
+		local addIrrelevant = hasbit(filter, LFGFilter.Filters.ADD_IRRELEVANT)
+		if (useGrey) then
 			grey = "|cff606060"
 		end
-
-		local lfmTag = ""
-		local lfgTag = "" 
-		if hasbit(filter, LFGFilter.Filters.ADD_LFGLFM_TAG) then
-			if hasLfm then
-				if addColor then
-					lfmTag = "|cff80ff20[LFM]|r"
+		if (hasbit(filter, LFGFilter.Filters.ADD_LFGLFM_TAG)) then
+			if (hasLfm) then
+				if (addColor) then 
+					lfglfmTag = "|cff80ff20[LFM]|r"
 				else
-					lfmTag = "[LFM]"
+					lfglfmTag = "[LFM]"
 				end
-			end
-			if hasLfg then
-				if addColor then
-					lfgTag = "|cff0040ff[LFG]|r"
-				else
-					lfgTag = "[LFG]"
-				end
-			end
-		end
-
-		local heroic = ""
-		if ishero and hasbit(filter, LFGFilter.Filters.ADD_HEROIC) then
-			if addColor then
-				heroic = "|cffff2020[HC]|r"
-			else
-				heroic = "[HC]"
-			end
-		end
-
-		local dungeonnames = ""
-		if hasbit(filter, LFGFilter.Filters.ADD_DUNGEON_TAGS) then
-			for _, dungeon in pairs(dungeons) do 
-				local dname = "[" .. dungeon.LocalizedName .. "]"
+			elseif (hasLfg) then
 				if (addColor) then
-					local c = LFGFilter.Colors[LFGFilter:GetDifficulty(dungeon, ishero)]
-					local ctext = ("ff%.2x%.2x%.2x"):format(c.r, c.g, c.b)
-					dname = "|c" .. ctext .. dname .. "|r"
+					lfglfmTag = "|cff0040ff[LFG]|r"
+				else
+					lfglfmTag = "[LFG]"
 				end
-				dungeonnames = dungeonnames .. dname
 			end
 		end
-
-		local formatted = (grey .. lfmTag .. lfgTag .. " " .. (hcTag .. dungeonnames .. " " .. arg1):trim()):trim()
-		return false, formatted, ...
+		hcTag = ""
+		if ishero then
+			if addColor then
+				hcTag = "|cffff2020[HC]|r"
+			else
+				hcTag = "[HC]"
+			end
+		end
+		if ((addTags and (matchLevel > 1)) or (addIrrelevant and (matchLevel < 2))) then
+			for _, n in pairs(dungeons) do 
+				local dungeon = LFGFilter.Dungeons[n]
+				if (dungeon) then
+					local d = LFGFilter:GetDifficulty(n, ishero)
+					--if (d > 1 and d < 5) then isRelevant = true end
+					local dname = "[" .. dungeon.LocalizedName .. "]"
+					if (addColor) then
+						local c = LFGFilter.Colors[d]
+						local ctext = ("ff%.2x%.2x%.2x"):format(c.r, c.g, c.b)
+						dname = "|c" .. ctext .. dname .. "|r"
+					end
+					names = names .. dname
+				end
+			end
+		end
+		local text = grey .. lfglfmTag .. " " .. (hcTag .. names .. " " .. arg1):trim()
+		return false, text, ...
 	end
 	return
 end

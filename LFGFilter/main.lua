@@ -50,6 +50,14 @@ local function filterFunc(self, event, arg1, ...)
 				Heroic = ishero,
 			}
 		end
+				local d = LFGFilter:GetDifficulty(dungeon, ishero)
+				if d > 1 and d < 5 then
+					hasRelevant = true
+					break
+				end
+			end
+		end
+
 		local filter = LFGFilter.Config.Filter
 		local lfglfmTag = "" -- lfg or lfm text to set at the beginning of line
 		local names = ""

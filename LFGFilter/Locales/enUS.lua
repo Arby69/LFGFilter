@@ -1,13 +1,26 @@
 local L = _G.LibStub("AceLocale-3.0"):NewLocale("LFGFilter", "enUS", true, true)
 
 if L then
+
     L["Select Dungeon"] = "Select Dungeon"	
+    L["Unknown"] = "Unknown" -- Tag to show in chat when no Dungeon or Quest could be detected, but other words hint that it's a group search
+    L["Quest"] = "Quest" -- Tag to show in chat when a Quest link is detected, so the player is obviously searching for a quest group rather than a dungeon group
 
     -- Using Dungeon Tokens, you can assume them being used for LUA pattern matching.
     -- That means, matching patterns are allowed. You should consider all tokens are
     -- surrounded by word boundings ("%W" = all but alphanumeric chars), to ensure
     -- found tokens are words for itself.
     -- (Yes, beginning and ending of the chat line are taken into consideration!)
+
+    -- In enUS locale all those tokens are usually empty, because they will be 
+    -- defined with the dungeon itself.
+    -- The reason is, that these tokens are universally legal, as most of them are 
+    -- commonly used in most of the regions around the world.
+    -- For example, in Germany we don't only use "bft" (for "Blackfathom Tiefen") 
+    -- but also "bfd" (original Blackfathom Deeps) as abbreviation in chats.
+    -- Tokens that are only defined here in the locale, would not be considered 
+    -- for matching on localized non-EN-clients, so I rather define them globally 
+    -- in the dungeon.
 
     L["Ragefire Chasm"] = "Ragefire Chasm"
     L["RFC-Tokens"] = { }
@@ -191,7 +204,6 @@ if L then
 
     ----------------------------------------------------------------------
 
-    L["Custom"] = "Custom"
     L["RoleKeywords"] = { }
     L["LFMKeywords"] = { }
     L["LFGKeywords"] = { }

@@ -1,7 +1,10 @@
 local L = _G.LibStub("AceLocale-3.0"):NewLocale("LFGFilter", "deDE")
 
 if (L) then
+	
 	L["Select Dungeon"] = "Dungeon auswählen"
+	L["Unknown"] = "Unbekannt"
+	L["Quest"] = "Quest"
 
 	-- Bei den Dungeon-Tokens darf davon ausgegangen werden, dass mit ihnen ein PATTERN-MATCHING
 	-- durchgeführt wird, d.h. LUA Matching Patterns sind erlaubt. Man sollte davon ausgehen,
@@ -191,8 +194,6 @@ if (L) then
 
 	------------------------------------------------------------------------------------------------
 	
-	L["Custom"] = "Benutzerdefiniert"
-
 	L["RoleKeywords"] = {
 		"dd",
 		"dds",

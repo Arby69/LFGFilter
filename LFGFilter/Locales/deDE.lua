@@ -1,10 +1,7 @@
 local L = _G.LibStub("AceLocale-3.0"):NewLocale("LFGFilter", "deDE")
 
 if (L) then
-	
 	L["Select Dungeon"] = "Dungeon auswählen"
-	L["Unknown"] = "Unbekannt"
-	L["Quest"] = "Quest"
 
 	-- Bei den Dungeon-Tokens darf davon ausgegangen werden, dass mit ihnen ein PATTERN-MATCHING
 	-- durchgeführt wird, d.h. LUA Matching Patterns sind erlaubt. Man sollte davon ausgehen,
@@ -13,73 +10,73 @@ if (L) then
 	-- Wortanfang und -ende zu gewährleisten. Und ja: Auch Anfang und Ende der Chatzeile werden
 	-- berücksichtigt (keine Bange)
 
-	L["Ragefire Chasm"] = "Flammenschlund"
+    L["Ragefire Chasm"] = "Flammenschlund"
 	L["RFC-Tokens"] = { "fs", "flammenschlund", "rfa" }
 
-	L["Wailing Caverns"] = "Höhlen des Wehklagens"
-	L["WC-Tokens"] = { "hdw", "wehklagens?" }
+    L["Wailing Caverns"] = "Höhlen des Wehklagens"
+    L["WC-Tokens"] = { "hdw", "wehklagens?" }
 
 	L["The Deadmines"] = "Die Todesminen"
 	L["DM-Tokens"] = { "tm", "to[dt]esmie?nen?" }
-	L["DM-AntiTokens"] = { "ost", "nord" }
+    L["DM-AntiTokens"] = { "ost", "nord" }
 
 	L["Shadowfang Keep"] = "Burg Schattenfang"
 	L["SFK-Tokens"] = { "bsf", "schattenfang" }
 
-	L["Blackfathom Deeps"] = "Tiefschwarze Grotte"
+    L["Blackfathom Deeps"] = "Tiefschwarze Grotte"
 	L["BFD-Tokens"] = { "bft", "tsg", "grott?e", "tiefschwarz%a+" }
 
-	L["The Stockades"] = "Das Verlies"
+    L["The Stockades"] = "Das Verlies"
 	L["STOCKS-Tokens"] = { "verliess?", "verließ" } -- er verließ sich darauf, dass er trotz Rechtschreibschwäche ins Verlies mitgenommen würde
 
-	L["Gnomeregan"] = "Gnomeregan"
+    L["Gnomeregan"] = "Gnomeregan"
 	L["GNOME-Tokens"] = { } -- keine besonderen deutschen Kürzel
 
-	L["Razorfen Kraul"] = "Kral der Klingenhauer"
+    L["Razorfen Kraul"] = "Kral der Klingenhauer"
 	L["RK-Tokens"] = { "kral", "kdk" }
 
 	L["The Scarlet Monastery"] = "Scharlachrotes Kloster"
-	L["The Scarlet Monastery: Graveyard"] = "Scharlachrotes Kloster: Friedhof"
+    L["The Scarlet Monastery: Graveyard"] = "Scharlachrotes Kloster: Friedhof"
 	L["GY-Tokens"] = { "fh", "friedhof" }
 
-	L["The Scarlet Monastery: Library"] = "Scharlachrotes Kloster: Bibliothek"
+    L["The Scarlet Monastery: Library"] = "Scharlachrotes Kloster: Bibliothek"
 	L["LIB-Tokens"] = { "bib", "bibi", "bibliothek", "biblio?" }
 
-	L["The Scarlet Monastery: Armory"] = "Scharlachrotes Kloster: Waffenkammer"
+    L["The Scarlet Monastery: Armory"] = "Scharlachrotes Kloster: Waffenkammer"
 	L["ARM-Tokens"] = { "wk", "waffenkammer", "waffelkammer" } -- das mit L hab ich schon gesehen, ich fand's witzig
 
-	L["The Scarlet Monastery: Cathedral"] = "Scharlachrotes Kloster: Kathedrale"
+    L["The Scarlet Monastery: Cathedral"] = "Scharlachrotes Kloster: Kathedrale"
 	L["CATH-Tokens"] = { "kath", "kathe%a*", "kat", "kahte%a*" }
 
-	L["Razorfen Downs"] = "Hügel der Klingenhauer"
+    L["Razorfen Downs"] = "Hügel der Klingenhauer"
 	L["RD-Tokens"] = { "hügel", "huegel", "hdk" }
 	L["RD-AntiTokens"] = { "schlingen.*" } 
 
-	L["Uldaman"] = "Uldaman"
+    L["Uldaman"] = "Uldaman"
 	L["ULDA-Tokens"] = { } -- man könnte Ulduar eintragen, ich hab das schon im Chat gelesen, aber ich lass das mal^^
 
-	L["Zul'Farak"] = "Zul'Farak"
+    L["Zul'Farak"] = "Zul'Farak"
 	L["ZF-Tokens"] = { } -- keine besonderen deutschen Kürzel
 
-	L["Maraudon"] = "Maraudon"
+    L["Maraudon"] = "Maraudon"
 	L["MARA-Tokens"] = { } -- keine besonderen deutschen Kürzel
 
-	L["Temple of Atal'Hakkar"] = "Tempel von Atal'Hakkar"
+    L["Temple of Atal'Hakkar"] = "Tempel von Atal'Hakkar"
 	L["ST-Tokens"] = { "vt", "versunkener", "tempel" }
 
-	L["Blackrock Depths"] = "Schwarzfelstiefen"
+    L["Blackrock Depths"] = "Schwarzfelstiefen"
 	L["BRD-Tokens"] = { "brt", "sft", "blackr.*tiefen" }
 
-	L["Lower Blackrock Spire"] = "Untere Schwarzfelsspitze"
+    L["Lower Blackrock Spire"] = "Untere Schwarzfelsspitze"
 	L["LBRS-Tokens"] = { "untere.*spitze" }
 
-	L["Upper Blackrock Spire"] = "Obere Schwarzfelsspitze"
+    L["Upper Blackrock Spire"] = "Obere Schwarzfelsspitze"
 	L["UBRS-Tokens"] = { "obere.*spitze" }
 
-	L["Stratholme"] = "Stratholme"
+    L["Stratholme"] = "Stratholme"
 	L["STRAT-Tokens"] = { } -- keine besonderen deutschen Kürzel
 
-	L["Scholomance"] = "Scholomance"
+    L["Scholomance"] = "Scholomance"
 	L["SCHOLO-Tokens"] = { } -- keine besonderen deutschen Kürzel
 
 	L["Dire Maul"] = "Düsterbruch"
@@ -92,10 +89,10 @@ if (L) then
 	L["Dire Maul North"] = "Düsterbruch Nord"
 	L["DMNORTH-Tokens"] = { "db.*nord", "duest.*nord", "düst.*nord", "dm.*nord", "dire.*nord" }
 
-	L["Molten Core"] = "Geschmolzener Kern"
+    L["Molten Core"] = "Geschmolzener Kern"
 	L["MC-Tokens"] = { "geschmolzener", "kern" }
 
-	L["Onyxia's Lair"] = "Onyxias Hort"
+    L["Onyxia's Lair"] = "Onyxias Hort"
 	L["ONY-Tokens"] = { } -- keine besonderen deutschen Kürzel
 
 	L["Blackwing Lair"] = "Pechschwingenhort"
@@ -116,7 +113,7 @@ if (L) then
 	--------------------------------------------- BCC ----------------------------------------------
 	
 	L["Hellfire Ramparts"] = "Höllenfeuerbollwerk"
-	L["HR-Tokens"] = { "bw", "%a*bol%a*werk" }
+	L["HR-Tokens"] = { "bw", "%a*bol%a*werk", "bwk" }
 	
 	L["Blood Furnace"] = "Blutkessel"
 	L["BF-Tokens"] = { "bk", "kessel", "blut.*kess%a*" }
@@ -159,8 +156,8 @@ if (L) then
 	L["Mechanar"] = "Mechanar"
 	L["MECH-Tokens"] = {}
 
-	L["Arcatraz"] = "Arcatraz"
-	L["ARCA-Tokens"] = { "arka", "arkatraz", "arkatras+" }
+	L["Arcatraz"] = "Arkatraz"
+	L["ARCA-Tokens"] = { "arka", "arkatras+" }
 
 	L["Magister's Terrace"] = "Terrasse der Magister"
 	L["MAT-Tokens"] = { "ter+as+e", "magister", "tdm" }
@@ -192,8 +189,12 @@ if (L) then
 	L["Sunwell Plateau"] = "Sonnenbrunnenplateau"
 	L["SUN-Tokens"] = { "%a*jaeden", "sonnenbr%a*" }
 
+----------------------------------------------------------------------
+
 	------------------------------------------------------------------------------------------------
 	
+    L["Custom"] = "Benutzerdefiniert"
+
 	L["RoleKeywords"] = {
 		"dd",
 		"dds",
@@ -225,5 +226,4 @@ if (L) then
 		"voll danke",
 		"danke voll",
 	}
-
 end

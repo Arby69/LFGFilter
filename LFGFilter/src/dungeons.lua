@@ -20,21 +20,21 @@ function LFGFilter:DefineHeroDungeon(name, size, location, faction, minlevel, ye
 		Tokens = { },
 		AntiTokens = { },
 	}
-	if (name ~= "Unknown" and name ~= "Quest") then
-		table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(string.lower(name)) .. "%W")
-		if (name ~= lName) then
-			table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(string.lower(lName)) .. "%W")
+	table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(string.lower(name)) .. "%W")
+	if (name ~= lName) then
+		table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(string.lower(lName)) .. "%W")
+	end
+	if (type(tokens) == "table") then
+		for _, tok in pairs(tokens) do
+			table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
 		end
-		if (type(tokens) == "table") then
-			for _, tok in pairs(tokens) do
-				table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
-			end
+	end
+	if (type(antitokens) == "table") then
+		for _, tok in pairs(antitokens) do
+			table.insert(dungeon.AntiTokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
 		end
-		if (type(antitokens) == "table") then
-			for _, tok in pairs(antitokens) do
-				table.insert(dungeon.AntiTokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
-			end
-		end
+	end
+	if (name ~= "Custom") then
 		local locTokens = self.Locale[shortname .. "-Tokens"] or {}
 		if (type(locTokens) == "table") then
 			for _, tok in pairs(locTokens) do
@@ -57,8 +57,8 @@ local YELLOW = { r = 255, g = 255, b = 0 }
 local GREEN = { r = 0, g = 168, b = 0 }
 local GREY = { r = 128, g = 128, b = 128 }
 
-function LFGFilter:GetDifficultyColor(dungeonname, hc)
-	return self.Colors[self:GetDifficulty(dungeonname, hc)]
+function LFGFilter:GetDifficultyColor(dungeonname)
+	return self.Colors[self:GetDifficulty(dungeonname)]
 end
 
 function LFGFilter:GetDifficulty(dungeon, ishero)
@@ -109,29 +109,42 @@ local function IsDungeonMatch(line, dungeon)
 	return false
 end
 
-function LFGFilter:GetMatchingDungeons(message, ishero)
+function LFGFilter:GetMatchingDungeons(message)
 	local result = { }
+	local matchLevel = 0
+	local DMKey = nil
 	local ifOver40 = false
-
+	--local line = " " .. message .. " "
 	if (type(message) == "string") then
 		local isQuest = LFGFilter.IsQuest(message)
 		if (isQuest == false) then
-			for _, dungeon in pairs(self.Dungeons) do
-				if (IsDungeonMatch(message, dungeon)) then
-					result[dungeon.Name] = dungeon
+			for key, dungeon in pairs(self.Dungeons) do
+				if (IsDungeonMatch(message, dungeon) == true) then
+					table.insert(result, key)
+					local diff = self:GetDifficulty(dungeon)
+					local dOffset = 3 - abs(3-diff)
+					if (dOffset > matchLevel) then
+						matchLevel = dOffset
+					end
+					if (dungeon.Name == "The Deadmines") then DMKey = key end
 					if (dungeon.MinLevel > 40) then ifOver40 = true end
 				end
 			end
 			-- if Deadmines is found, but other dungeons are lvl > 40, most probably Dire Maul was meant!
-			if (ifOver40 and result["The Deadmines"]) then
-				result["The Deadmines"] = nil
-				result["Dire Maul"] = self.Dungeons["Dire Maul"]
+			if (DMKey and ifOver40) then
+				local dungeon = LFGFilter.Dungeons["Dire Maul"]
+				result[DMKey] = dungeon
+				local diff = self:GetDifficulty(dungeon)
+				local dOffset = 3 - abs(3-diff)
+				if (dOffset > matchLevel) then
+					matchLevel = dOffset
+				end
 			end
 		else
-			table.insert(result, "Quest")
+			matchLevel = 3
 		end
 	end
-	return result
+	return result, matchLevel
 end
 
 function LFGFilter:DefineDungeons()
@@ -143,12 +156,6 @@ function LFGFilter:DefineDungeons()
 	self.Colors[4] = ORANGE
 	self.Colors[5] = RED
 	self.Dungeons = { }
-	
-	-- CUSTOM / QUESTS
-	self:DefineDungeon("Unknown", 40, "", LFGFilter.Factions.BOTH, 0, 0, 70, 70, {})
-	self:DefineDungeon("Quest", 40, "", LFGFilter.Factions.BOTH, 0, 0, 70, 70, {})
-
-	-- Vanilla Dungeons
 	self:DefineDungeon("Ragefire Chasm", 5, "Orgrimmar", LFGFilter.Factions.HORDE, 10, 13, 18, 21, { "rfc", "ragefire", "chasm" })
 	self:DefineDungeon("Wailing Caverns", 5, "Barrens", LFGFilter.Factions.BOTH, 12, 15, 20, 25, { "wc", "wailing", "caverns?" })
 	self:DefineDungeon("The Deadmines", 5, "Westfall", LFGFilter.Factions.BOTH, 15, 18, 23, 26, { "dm", "mines", "dea[dt]h?mine%a*" }, { "east", "north", "west" })
@@ -166,7 +173,8 @@ function LFGFilter:DefineDungeons()
 	self:DefineDungeon("Zul'Farak", 5, "Tanaris", LFGFilter.Factions.BOTH, 41, 44, 51, 54, { "zf", "farr?ak", "zul%W?farr?ak", "zul" })
 	self:DefineDungeon("Maraudon", 5, "Desolace", LFGFilter.Factions.BOTH, 43, 46, 52, 55, { "mara", "maura%a*", "mara%a*", "m%a+r%a+don" })
 	self:DefineDungeon("Temple of Atal'Hakkar", 5, "Swamp of Sorrows", LFGFilter.Factions.BOTH, 47, 50, 57, 60, { "st", "toa", "atal", "hakkar", "sunken", "temple" }, { "aq.*", ".*qiraj" })
-	self:DefineDungeon("Blackrock Depths", 5, "Blackrock Mountain", LFGFilter.Factions.BOTH, 50, 52, 60, 60, { "brd", "%a*rock%W*de*pt?h?s?", "imp.*run", "ony.*pre%a*", "arena" })
+	self:DefineDungeon("Blackrock Depths", 5, "Blackrock Mountain", LFGFilter.Factions.BOTH, 50, 52, 60, 60, { "brd", "%a*rock%W*de*pt?h?s?", "imp.*run", "ony.*pre%a*" })
+	--table.insert(self.Dungeons["BlackrockDepths"].Tokens, "%Warena%W") -- add this only in Classic, not in TBC. In TBC "arena" is reserved for the Nagrand Arena quests
 	self:DefineDungeon("Lower Blackrock Spire", 5, "Blackrock Mountain", LFGFilter.Factions.BOTH, 54, 55, 60, 60, { "lbrs", "lower.*spire" })
 	self:DefineDungeon("Upper Blackrock Spire", 5, "Blackrock Mountain", LFGFilter.Factions.BOTH, 55, 55, 60, 60, { "ubrs", "upper.*spire", "urbs", "rend" })
 	self:DefineDungeon("Dire Maul East", 5, "Feralas", LFGFilter.Factions.BOTH, 55, 58, 60, 60, { "dmeast", "dm%We", "dm.*east", "dme", "dire.*east", "jump.*run" })
@@ -175,11 +183,7 @@ function LFGFilter:DefineDungeons()
 	self:DefineDungeon("Stratholme", 5, "Eastern Plaguelands", LFGFilter.Factions.BOTH, 56, 58, 60, 60, { "strat", "sh", "strath%a*", "baron", "starth%a*", "straht%a*" })
 	self:DefineDungeon("Scholomance", 5, "Western Plaguelands", LFGFilter.Factions.BOTH, 56, 58, 60, 60, { "scholo", "scholo.*" })
 
-	-- Grouping Dungeons
-	self:DefineDungeon("Dire Maul", 5, "Feralas", LFGFilter.Factions.BOTH, 55, 58, 60, 60, {})
-	self:DefineDungeon("The Scarlet Monastery", 5, "Tirisfal", LFGFilter.Factions.BOTH, 23, 26, 42, 45, {})
-
-	-- Vanilla Raids
+	-- RAIDS
 	self:DefineDungeon("Molten Core", 40, "Blackrock Mountain", LFGFilter.Factions.BOTH, 55, 58, 60, 60, { "mc", "molten", "core", "ragnaros" })
 	self:DefineDungeon("Onyxia's Lair", 40, "Dustwallow Marsh", LFGFilter.Factions.BOTH, 55, 58, 60, 60, { "ony", "onyxia" }, { "pre" })
 	self:DefineDungeon("Blackwing Lair", 40, "Blackrock Mountain", LFGFilter.Factions.BOTH, 60, 60, 60, 60, { "bwl", "blackwing", "nefa?r?i?a?n?" })
@@ -188,13 +192,20 @@ function LFGFilter:DefineDungeons()
 	self:DefineDungeon("Ahn'Qiraj Temple", 40, "Silithus", LFGFilter.Factions.BOTH, 60, 60, 60, 60, { "aq40", "aq.40", "temple.*qiraj", ".*qiraj.*temple", "aq.*temple", "c%W?thun" }, { "bl%a*", "bt" })
 	self:DefineDungeon("Naxxramas", 40, "Eastern Plaguelands", LFGFilter.Factions.BOTH, 60, 60, 60, 60, { "naxx", "naxx%a*", "k?e?l?%W?thuzad" })
 
+	-- CUSTOM / QUESTS
+	self:DefineDungeon("Custom", 40, "", LFGFilter.Factions.BOTH, 0, 0, 70, 70, {})
+
+	-- Grouping Dungeons
+	self:DefineDungeon("Dire Maul", 5, "Feralas", LFGFilter.Factions.BOTH, 55, 58, 60, 60, {})
+	self:DefineDungeon("The Scarlet Monastery", 5, "Tirisfal", LFGFilter.Factions.BOTH, 23, 26, 42, 45, {})
+
+
 end
 
 function LFGFilter:DefineBCCDungeons()
 
 	self.Dungeons = self.Dungeons or { }
 	
-	-- TBC Dungeons
 	self:DefineHeroDungeon("Hellfire Ramparts", 5, "Hellfire Peninsula", LFGFilter.Factions.BOTH, 59, 60, 62, 70, 70, { "hr", "ramp.*s", "rampart" })
 	self:DefineHeroDungeon("Blood Furnace", 5, "Hellfire Peninsula", LFGFilter.Factions.BOTH, 60, 61, 63, 70, 70, { "bf", "furnace", "bloo.*f" })
 	self:DefineHeroDungeon("Slave Pens", 5, "Zangarmarsh", LFGFilter.Factions.BOTH, 61, 62, 64, 70, 70, { "sp", "slav%a*", "pens" })
@@ -212,7 +223,6 @@ function LFGFilter:DefineBCCDungeons()
 	self:DefineHeroDungeon("Arcatraz", 5, "Tempest Keep", LFGFilter.Factions.BOTH, 70, 70, 70, 70, 70, { "arca", "arcat%a*" })
 	self:DefineHeroDungeon("Magister's Terrace", 5, "Sunstrider Isle", LFGFilter.Factions.BOTH, 70, 70, 70, 70, 70, { "mat", "ter+ace", "magist%a*" })
 
-	-- TBC Raids
 	self:DefineDungeon("Karazhan", 10, "Deadwind Pass", LFGFilter.Factions.BOTH, 70, 70, 70, 70, { "kara" }, { "pre", "preq%a*" })
 	self:DefineDungeon("Gruul's Lair", 25, "Blade's Edge", LFGFilter.Factions.BOTH, 70, 70, 70, 70, { "gruul" })
 	self:DefineDungeon("Magtheridon's Lair", 25, "Hellfire Peninsula", LFGFilter.Factions.BOTH, 70, 70, 70, 70, { "mag" })

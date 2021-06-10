@@ -1,7 +1,10 @@
 local L = _G.LibStub("AceLocale-3.0"):NewLocale("LFGFilter", "deDE")
 
 if (L) then
+	
 	L["Select Dungeon"] = "Dungeon auswählen"
+	L["Unknown"] = "Unbekannt"
+	L["Quest"] = "Quest"
 
 	-- Bei den Dungeon-Tokens darf davon ausgegangen werden, dass mit ihnen ein PATTERN-MATCHING
 	-- durchgeführt wird, d.h. LUA Matching Patterns sind erlaubt. Man sollte davon ausgehen,
@@ -9,6 +12,8 @@ if (L) then
 	-- werden vorne und hinten ein "%W" angefügt (%W = alles außer Buchstaben und Ziffern), um
 	-- Wortanfang und -ende zu gewährleisten. Und ja: Auch Anfang und Ende der Chatzeile werden
 	-- berücksichtigt (keine Bange)
+
+	--------------------------------------------- Vanilla ----------------------------------------------
 
 	L["Ragefire Chasm"] = "Flammenschlund"
 	L["RFC-Tokens"] = { "fs", "flammenschlund", "rfa" }
@@ -113,7 +118,7 @@ if (L) then
 	--------------------------------------------- BCC ----------------------------------------------
 	
 	L["Hellfire Ramparts"] = "Höllenfeuerbollwerk"
-	L["HR-Tokens"] = { "bw", "%a*bol%a*werk", "bwk" }
+	L["HR-Tokens"] = { "bw", "%a*bol%a*werk" }
 	
 	L["Blood Furnace"] = "Blutkessel"
 	L["BF-Tokens"] = { "bk", "kessel", "blut.*kess%a*" }
@@ -156,8 +161,8 @@ if (L) then
 	L["Mechanar"] = "Mechanar"
 	L["MECH-Tokens"] = {}
 
-	L["Arcatraz"] = "Arkatraz"
-	L["ARCA-Tokens"] = { "arka", "arkatras+" }
+	L["Arcatraz"] = "Arcatraz"
+	L["ARCA-Tokens"] = { "arka", "arkatraz", "arkatras+" }
 
 	L["Magister's Terrace"] = "Terrasse der Magister"
 	L["MAT-Tokens"] = { "ter+as+e", "magister", "tdm" }
@@ -191,8 +196,6 @@ if (L) then
 
 	------------------------------------------------------------------------------------------------
 	
-	L["Custom"] = "Benutzerdefiniert"
-
 	L["RoleKeywords"] = {
 		"dd",
 		"dds",
@@ -224,4 +227,5 @@ if (L) then
 		"voll danke",
 		"danke voll",
 	}
+
 end

@@ -29,7 +29,6 @@ end
 
 local init = false
 local function filterFunc(self, event, arg1, ...)
-	if self.name ~= nil then return end
 	local _, _, arg4, arg5, _, _, _, arg9, _, _, arg12 = ...
 	local found, hasLfm, hasLfg, dungeons, matchLevel, ishero = LFGFilter:ParseMessage(arg1)
 	if (found) then

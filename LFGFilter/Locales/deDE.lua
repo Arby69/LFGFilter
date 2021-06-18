@@ -27,7 +27,7 @@ if (L) then
 	L["BFD-Tokens"] = { "bft", "tsg", "grott?e", "tiefschwarz%a+" }
 
 	L["The Stockades"] = "Das Verlies"
-	L["STOCKS-Tokens"] = { "verliess?", "verließ" } -- er verließ sich darauf, dass er trotz Rechtschreibschwäche ins Verlies mitgenommen würde
+	L["STOCKS-Tokens"] = { "verlie?ss?", "verließ" } -- er verließ sich darauf, dass er trotz Rechtschreibschwäche ins Verlies mitgenommen würde
 
 	L["Gnomeregan"] = "Gnomeregan"
 	L["GNOME-Tokens"] = { } -- keine besonderen deutschen Kürzel
@@ -49,7 +49,7 @@ if (L) then
 	L["CATH-Tokens"] = { "kath", "kathe%a*", "kat", "kahte%a*" }
 
 	L["Razorfen Downs"] = "Hügel der Klingenhauer"
-	L["RD-Tokens"] = { "hügel", "huegel", "hdk" }
+	L["RD-Tokens"] = { "huegel", "hdk" }
 	L["RD-AntiTokens"] = { "schlingen.*" } 
 
 	L["Uldaman"] = "Uldaman"
@@ -81,13 +81,13 @@ if (L) then
 
 	L["Dire Maul"] = "Düsterbruch"
 	L["Dire Maul East"] = "Düsterbruch Ost"
-	L["DMEAST-Tokens"] = { "db.*ost", "duest.*ost", "düst.*ost", "dm.*ost", "dire.*ost" }
+	L["DMEAST-Tokens"] = { "db.*ost", "due?st.*ost", "dm.*ost", "dire.*ost" }
 
 	L["Dire Maul West"] = "Düsterbruch West"
-	L["DMWEST-Tokens"] = { "db.*west", "duest.*west", "düst.*west" }
+	L["DMWEST-Tokens"] = { "db.*west", "due?st.*west" }
 
 	L["Dire Maul North"] = "Düsterbruch Nord"
-	L["DMNORTH-Tokens"] = { "db.*nord", "duest.*nord", "düst.*nord", "dm.*nord", "dire.*nord" }
+	L["DMNORTH-Tokens"] = { "db.*nord", "due?st.*nord", "dm.*nord", "dire.*nord" }
 
 	L["Molten Core"] = "Geschmolzener Kern"
 	L["MC-Tokens"] = { "geschmolzener", "kern" }
@@ -96,7 +96,7 @@ if (L) then
 	L["ONY-Tokens"] = { } -- keine besonderen deutschen Kürzel
 
 	L["Blackwing Lair"] = "Pechschwingenhort"
-	L["BWL-Tokens"] = { "psh", "pechschw%a*", "%a+hort" }
+	L["BWL-Tokens"] = { "psh", "pechschw%a*", "pech%a+hort" }
 
 	L["Zul'Gurub"] = "Zul'Gurub"
 	L["ZG-Tokens"] = { } -- keine besonderen deutschen Kürzel
@@ -119,7 +119,7 @@ if (L) then
 	L["BF-Tokens"] = { "bk", "kessel", "blut.*kess%a*" }
 
 	L["Slave Pens"] = "Sklavenunterkünfte"
-	L["SP-Tokens"] = { "sklav%a*", "unterkü%a+" }
+	L["SP-Tokens"] = { "sklav%a*", "unterku%a+" }
 
 	L["Underbog"] = "Tiefensumpf"
 	L["UB-Tokens"] = { "tief%a*sumpf", "sumpf", "tiefen" }
@@ -136,16 +136,17 @@ if (L) then
 	L["HF-AntiTokens"] = { "hdz.*2" }
 
 	L["Sethekk Halls"] = "Sethekkhallen"
-	L["SH-Tokens"] = { "sethekk", "set%a*hall%a*", "se%a*ek+" }
+	L["SH-Tokens"] = { "sethekk", "set%a*[%-]?hall%a*", "se%a*ek+" }
 
 	L["Steamvault"] = "Dampfkammer"
-	L["SV-Tokens"] = { "dk", "dampf%a*" }
+	L["SV-Tokens"] = { "dk", "dampf%a*", "d[mapf]+k[ame]+r" }
 
 	L["Shadow Labyrinth"] = "Schattenlabyrinth"
 	L["SL-Tokens"] = { "schlab%a*", "schattenl%a*" }
 
 	L["Shattered Halls"] = "Zerschmetterte Hallen"
-	L["SHH-Tokens"] = { "zh", "zersch.*hallen?" }
+	L["SHH-Tokens"] = { "zh", "zersch.*hallen?", "hallen" }
+	L["SHH-AntiTokens"] = { "set%a*" }
 
 	L["Black Morass"] = "Der Schwarze Morast"
 	L["BM-Tokens"] = { "mor+ast", "hdz.*2", "zeit.*2" }
@@ -157,7 +158,7 @@ if (L) then
 	L["MECH-Tokens"] = {}
 
 	L["Arcatraz"] = "Arkatraz"
-	L["ARCA-Tokens"] = { "arka", "arkatras+" }
+	L["ARCA-Tokens"] = { "arka", "a[lrk]+atra[sz]+" }
 
 	L["Magister's Terrace"] = "Terrasse der Magister"
 	L["MAT-Tokens"] = { "ter+as+e", "magister", "tdm" }

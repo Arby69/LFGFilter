@@ -190,6 +190,74 @@ if L then
     L["SUN-Tokens"] = {}
 
     ----------------------------------------------------------------------
+    -- Wrath of the Lich King
+
+    L["Utgarde Keep"] = "Utgarde Keep"
+    L["UK-Tokens"] = {}
+  
+    L["The Nexus"] = "The Nexus"
+    L["NEX-Tokens"] = {}
+
+    L["Azjol-Nerub"] = "Azjol-Nerub"
+    L["AN-Tokens"] = {}
+
+    L["Ahn'kahet: The Old Kingdom"] = "Ahn'kahet: The Old Kingdom"
+    L["AK-Tokens"] = {}
+
+    L["Drak'Tharon Keep"] = "Drak'Tharon Keep"
+    L["DT-Tokens"] = {}
+
+    L["The Violet Hold"] = "The Violet Hold"
+    L["VH-Tokens"] = {}
+
+    L["Gundrak"] = "Gundrak"
+    L["GD-Tokens"] = {}
+
+    L["Halls of Stone"] = "Halls of Stone"
+    L["HOS-Tokens"] = {}
+
+    L["The Culling of Stratholme"] = "The Culling of Stratholme"
+    L["COS-Tokens"] = {}
+
+    L["Utgarde Pinnacle"] = "Utgarde Pinnacle"
+    L["UP-Tokens"] = {}
+
+    L["Halls of Lightning"] = "Halls of Lightning"
+    L["HOL-Tokens"] = {}
+
+    L["The Oculus"] = "The Oculus"
+    L["OCU-Tokens"] = {}
+
+    L["Trial of the Champion"] = "Trial of the Champion"
+    L["TOC-Tokens"] = {}
+
+    L["Pit of Saron"] = "Pit of Saron"
+    L["POS-Tokens"] = {}
+
+    L["The Forge of Souls"] = "The Forge of Souls"
+    L["FOS-Tokens"] = {}
+
+    L["Halls of Reflection"] = "Halls of Reflection"
+    L["HOR-Tokens"] = {}
+
+    -- Raids 
+
+    -- L["Naxxramas"] = "Naxxramas" -- already defined in Classic section
+    -- L["NAXX-Tokens"] = { }
+
+    L["Malygos"] = "Malygos"
+    L["MALY-Tokens"] = {}
+
+    L["The Obsidian Sanctum"] = "The Obsidian Sanctum"
+    L["OBSI-Tokens"] = {}
+
+    L["Vault of Archavon"] = "Vault of Archavon"
+    L["VOA-Tokens"] = {}
+
+    --L[""] = ""
+    --L["-Tokens"] = {}
+
+    ----------------------------------------------------------------------
 
     L["Custom"] = "Custom"
     L["RoleKeywords"] = { }

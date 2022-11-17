@@ -190,6 +190,74 @@ if (L) then
 	L["Sunwell Plateau"] = "Sonnenbrunnenplateau"
 	L["SUN-Tokens"] = { "%a*jaeden", "sonnenbr%a*" }
 
+  ----------------------------------------------------------------------
+  -- Wrath of the Lich King
+
+  L["Utgarde Keep"] = "Burg Utgarde"
+  L["UK-Tokens"] = { "burg", "bu" }
+  
+  L["The Nexus"] = "Der Nexus"
+  L["NEX-Tokens"] = {}
+
+  L["Azjol-Nerub"] = "Azjol-Nerub"
+  L["AN-Tokens"] = {}
+
+  L["Ahn'kahet: The Old Kingdom"] = "Ahn'kahet: Das alte Königreich"
+  L["AK-Tokens"] = {}
+
+  L["Drak'Tharon Keep"] = "Feste Drak'Tharon"
+  L["DT-Tokens"] = { "feste" }
+
+  L["The Violet Hold"] = "Violette Festung"
+  L["VH-Tokens"] = { "viol*.fest%a*" }
+
+  L["Gundrak"] = "Gundrak"
+  L["GD-Tokens"] = {}
+
+  L["Halls of Stone"] = "Hallen des Steins"
+  L["HOS-Tokens"] = { "hds", "hallen.*stein%a*" }
+
+  L["The Culling of Stratholme"] = "Das Ausmerzen von Stratholme"
+  L["COS-Tokens"] = { "ausmerz%a*", "hdz.*4", "zeit.*4" }
+
+  L["Utgarde Pinnacle"] = "Turm Utgarde"
+  L["UP-Tokens"] = { "turm", "tu" }
+
+  L["Halls of Lightning"] = "Hallen der Blitze"
+  L["HOL-Tokens"] = { "hdb", "hall.*blitz%a*" }
+
+  L["The Oculus"] = "Der Oculus"
+  L["OCU-Tokens"] = {}
+
+  L["Trial of the Champion"] = "Prüfung des Champions"
+  L["TOC-Tokens"] = { "pdc", "prüf%a*g" }
+
+  L["Pit of Saron"] = "Grube von Saron"
+  L["POS-Tokens"] = { "gvs", "grube" }
+
+  L["The Forge of Souls"] = "Die Seelenschmiede"
+  L["FOS-Tokens"] = { "ss", "seelens%a*" }
+
+  L["Halls of Reflection"] = "Hallen der Reflexion"
+  L["HOR-Tokens"] = { "hdr", "halle.*reflex%a*" }
+
+  -- Raids 
+
+  -- L["Naxxramas"] = "Naxxramas" -- already defined in Classic section
+  -- L["NAXX-Tokens"] = { }
+
+  L["Malygos"] = "Malygos"
+  L["MALY-Tokens"] = {}
+
+  L["The Obsidian Sanctum"] = "Das Obsidiansanktum"
+  L["OBSI-Tokens"] = {}
+
+  L["Vault of Archavon"] = "Archavons Kammer"
+  L["VOA-Tokens"] = {}
+
+  --L[""] = ""
+  --L["-Tokens"] = {}
+
 	------------------------------------------------------------------------------------------------
 	
 	L["Custom"] = "Benutzerdefiniert"

@@ -190,7 +190,7 @@ function LFGFilter:DefineDungeons()
 	self:DefineDungeon("Zul Gurub", 20, "Stranglethorn Vale", LFGFilter.Factions.BOTH, 60, 60, 60, 60, { "zg", "gurub", "zul%W?gurub" })
 	self:DefineDungeon("Ruins of Ahn'Qiraj", 20, "Silithus", LFGFilter.Factions.BOTH, 60, 60, 60, 60, { "aq20", "aq.20", "ruins.*qiraj", "aq.*ruins", "ossirian" })
 	self:DefineDungeon("Ahn'Qiraj Temple", 40, "Silithus", LFGFilter.Factions.BOTH, 60, 60, 60, 60, { "aq40", "aq.40", "temple.*qiraj", ".*qiraj.*temple", "aq.*temple", "c%W?thun" }, { "bl%a*", "bt" })
-	self:DefineDungeon("Naxxramas", 40, "Eastern Plaguelands", LFGFilter.Factions.BOTH, 60, 60, 60, 60, { "naxx", "naxx%a*", "k?e?l?%W?thuzad" })
+	--self:DefineDungeon("Naxxramas", 40, "Eastern Plaguelands", LFGFilter.Factions.BOTH, 60, 60, 60, 60, { "naxx", "naxx%a*", "k?e?l?%W?thuzad" })
 
 	-- CUSTOM / QUESTS
 	self:DefineDungeon("Custom", 40, "", LFGFilter.Factions.BOTH, 0, 0, 70, 70, {})
@@ -234,3 +234,31 @@ function LFGFilter:DefineBCCDungeons()
 	self:DefineDungeon("Sunwell Plateau", 25, "Sunstrider Isle", LFGFilter.Factions.BOTH, 70, 70, 70, 70, { "sun", "sunw%a*", "plateau" })
 
 end 
+
+function LFGFilter:DefineWotLKDungeons()
+
+	self.Dungeons = self.Dungeons or { }
+	
+	self:DefineHeroDungeon("Utgarde Keep", 5, "Howling Fjord", LFGFilter.Factions.BOTH, 65, 69, 72, 80, 80, { "uk", "u.*keep" })
+	self:DefineHeroDungeon("The Nexus", 5, "Borean Tundra", LFGFilter.Factions.BOTH, 66, 71, 73, 80, 80, { "nex", "nexus", "nex%a*" })
+	self:DefineHeroDungeon("Azjol-Nerub", 5, "Dragonblight", LFGFilter.Factions.BOTH, 67, 72, 74, 80, 80, { "an", "azjol", "nerub" })
+	self:DefineHeroDungeon("Ahn'kahet: The Old Kingdom", 5, "Dragonblight", LFGFilter.Factions.BOTH, 68, 73, 75, 80, 80, { "ak", "ah%a*.?kah%a*", "ahnk", "old%Wkingd%a*" })
+	self:DefineHeroDungeon("Drak'Tharon Keep", 5, "Grizzly Hills", LFGFilter.Factions.BOTH, 69, 74, 76, 80, 80, { "dt", "%a*k%W*tharon" })
+	self:DefineHeroDungeon("The Violet Hold", 5, "Dalaran", LFGFilter.Factions.BOTH, 70, 75, 77, 80, 80, { "vh", "v%a*%W*hold" })
+	self:DefineHeroDungeon("Gundrak", 5, "", LFGFilter.Factions.BOTH, 71, 76, 78, 80, 80, { "gd", "g%a*drak", "gun%Wdrak" })
+	self:DefineHeroDungeon("Halls of Stone", 5, "The Storm Peaks", LFGFilter.Factions.BOTH, 72, 77, 79, 80, 80, { "hos", "hall%a*stone" })
+	self:DefineHeroDungeon("The Culling of Stratholme", 5, "Tanaris", LFGFilter.Factions.BOTH, 75, 79, 80, 80, 80, { "cos", "cot.*4", "strat", "strath%a*", "starth%a*", "straht%a*", "%a*ganis" })
+	self:DefineHeroDungeon("Utgarde Pinnacle", 5, "Howling Fjord", LFGFilter.Factions.BOTH, 77, 79, 80, 80, 80, { "up", "pin+ac[le]*", "ymiron" })
+	self:DefineHeroDungeon("Halls of Lightning", 5, "The Storm Peaks", LFGFilter.Factions.BOTH, 75, 79, 80, 80, 80, { "hol", "lightn[ing]*", "loken" })
+	self:DefineHeroDungeon("The Oculus", 5, "Borean Tundra", LFGFilter.Factions.BOTH, 75, 79, 80, 80, 80, { "oculus", "ocu[lus]*" })
+	self:DefineHeroDungeon("Trial of the Champion", 5, "Icecrown", LFGFilter.Factions.BOTH, 75, 79, 80, 80, 80, { "toc", "trial", "trail" })
+	self:DefineHeroDungeon("Pit of Saron", 5, "Icecrown", LFGFilter.Factions.BOTH, 80, 80, 80, 80, 80, { "pos", "pit+", "saron" })
+	self:DefineHeroDungeon("The Forge of Souls", 5, "Icecrown", LFGFilter.Factions.BOTH, 80, 80, 80, 80, 80, { "fos", "forge", "souls" })
+	self:DefineHeroDungeon("Halls of Reflection", 5, "Icecrown", LFGFilter.Factions.BOTH, 80, 80, 80, 80, 80, { "hor", "reflec[tion]*" })
+
+	self:DefineDungeon("Naxxramas", 25, "Dragonblight", LFGFilter.Factions.BOTH, 80, 80, 80, 80, { "naxx", "naxx%a*", "k?e?l?%W?thuzad" })
+	self:DefineDungeon("Malygos", 25, "Borean Tundra", LFGFilter.Factions.BOTH, 80, 80, 80, 80, { "maly", "maly[gos]+", "eye%Wof%Weter[nity]+" })
+	self:DefineDungeon("The Obsidian Sanctum", 25, "Dragonblight", LFGFilter.Factions.BOTH, 80, 80, 80, 80, { "obsi", "sanctum", "obsi%dd?", "obsi.%d" })
+	self:DefineDungeon("Vault of Archavon", 25, "Wintergrasp", LFGFilter.Factions.BOTH, 80, 80, 80, 80, { "voa", "archa[von]*" })
+	
+end

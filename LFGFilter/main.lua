@@ -28,13 +28,17 @@ local function hasbit(x, p)
 end
 
 local init = false
+local lastMsgId = nil
+local lastMessage = nil
+
 local function filterFunc(self, event, arg1, ...)
-	local _, _, arg4, arg5, _, _, _, arg9, _, _, arg12 = ...
+	local _, _, arg4, arg5, _, _, _, arg9, _, arg11, arg12 = ...
+	if (lastMessage == arg1 and lastMsgId ~= arg11) then return true end -- identical message as before but new msgId? -> chat spam, filter it
+	lastMessage = arg1
+	lastMsgId = arg11
 	local found, hasLfm, hasLfg, dungeons, matchLevel, ishero = LFGFilter:ParseMessage(arg1)
 	if (found) then
-		--if (lastMsgId ~= arg11) then
 		if (dungeons and #dungeons > 0) then
-			--lastMsgId = arg11
 			local playerId = arg12
 			local playername = arg5:SplitString("-")[1] 
 			local channelname = arg4

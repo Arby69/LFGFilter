@@ -65,6 +65,7 @@ function LFGFilter:DefineTokens()
 	self.StopWords = self.CreateTokenTable({ "grp full", "thanks full", "ty full", "full ty", "full thanks", "http" }, self.Locale["StopWords"] or {})
 	self.NoDungeons = self.CreateTokenTable({ "wts", "wtb", "buy", "sell", "selling" }, self.Locale["NoDungeons"] or {})
 	self.HeroTags = self.CreateTokenTable({ "hc", "heroic", "hero" }, self.Locale["HeroTags"] or {})
+	self.NonHeroTags = self.CreateTokenTable({ "nhc", "non%Whc" }, self.Locale["NonHeroTags"] or {})
 end
 
 function LFGFilter.IsQuest(message)

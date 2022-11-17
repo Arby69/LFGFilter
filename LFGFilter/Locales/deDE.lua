@@ -119,10 +119,10 @@ if (L) then
 	L["BF-Tokens"] = { "bk", "kessel", "blut.*kess%a*" }
 
 	L["Slave Pens"] = "Sklavenunterkünfte"
-	L["SP-Tokens"] = { "sklav%a*", "unterku%a+" }
+	L["SP-Tokens"] = { "sk[la]+ven%a*", "unterku%a+" }
 
 	L["Underbog"] = "Tiefensumpf"
-	L["UB-Tokens"] = { "tief%a*sumpf", "sumpf", "tiefen" }
+	L["UB-Tokens"] = { "tief%a*sum[pf]+", "sumpf", "tiefen" }
 	L["UB-AntiTokens"] = { "blackr%a*", "schwarzf%a*" }
 	
 	L["Manatombs"] = "Managruft"
@@ -142,10 +142,10 @@ if (L) then
 	L["SV-Tokens"] = { "dk", "dampf%a*", "d[mapf]+k[ame]+r" }
 
 	L["Shadow Labyrinth"] = "Schattenlabyrinth"
-	L["SL-Tokens"] = { "schlab%a*", "schattenl%a*" }
+	L["SL-Tokens"] = { "schlab%a*", "schattenl%a*", "schlap+[iy]e?" }
 
 	L["Shattered Halls"] = "Zerschmetterte Hallen"
-	L["SHH-Tokens"] = { "zh", "zersch.*hallen?", "hallen" }
+	L["SHH-Tokens"] = { "zh", "zersch.*hallen?", "a%schmet.*hallen?", "hallen" }
 	L["SHH-AntiTokens"] = { "set%a*" }
 
 	L["Black Morass"] = "Der Schwarze Morast"
@@ -158,7 +158,7 @@ if (L) then
 	L["MECH-Tokens"] = {}
 
 	L["Arcatraz"] = "Arkatraz"
-	L["ARCA-Tokens"] = { "arka", "a[lrk]+atra[sz]+" }
+	L["ARCA-Tokens"] = { "arka", "a[lrk]+atrat?[sz]+" }
 
 	L["Magister's Terrace"] = "Terrasse der Magister"
 	L["MAT-Tokens"] = { "ter+as+e", "magister", "tdm" }
@@ -221,6 +221,8 @@ if (L) then
 		"heroisch",
 	}
 	
+	L["NonHeroTags"] = {}
+
 	L["StopWords"] = {
 		"voll danke",
 		"danke voll",

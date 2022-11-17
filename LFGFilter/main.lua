@@ -20,6 +20,7 @@ function LFGFilter:OnInitialize()
 	self:DefineTokens()
 	self:DefineDungeons()
 	self:DefineBCCDungeons()
+	self:DefineWotLKDungeons()
 	self.Groups = { }
 end
 

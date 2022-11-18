@@ -24,7 +24,12 @@ end
 
 function LFGFilter:DefineDungeon(addon, name, size, location, faction, minlevel, yellow, green, maxlevel, herolevel, tokens, antitokens)
 	local lName = self.Locale[name] or name
-	local shortname = string.upper(tokens[1] or name)
+	-- local shortname = string.upper(tokens[1] or name)
+	local shortname = name
+	if tokens and type(tokens) == "table" and #tokens > 0 then
+		shortname = tokens[1]
+	end
+	location = location or ""
 	local dungeon = {
 		Name = name,
 		Addon = addon or "",
@@ -32,7 +37,7 @@ function LFGFilter:DefineDungeon(addon, name, size, location, faction, minlevel,
 		LocalizedName = lName,
 		Size = size or 40,
 		IsRaid = (size or 0) > 5,
-		Location = LFGFilter.Locale[location] or location or "",
+		Location = LFGFilter.Locale[location] or location,
 		Faction = faction or LFGFilter.Factions.BOTH,
 		MinLevel = minlevel or 0,
 		YellowLevel = yellow or 0,
@@ -141,7 +146,7 @@ local function IsDungeonMatch(line, dungeon)
 end
 
 function RemoveDungeonFromTable(dungeons, key)
-	for i, n in pairs(dungeons)
+	for i, n in pairs(dungeons) do
 		if (n == key) then
 			table.remove(i)
 			return
@@ -253,22 +258,22 @@ function LFGFilter:DefineBCCDungeons()
 	self.Dungeons = self.Dungeons or { }
 	
 	-- function LFGFilter:DefineBCDungeon(name, location, minlevel, yellow, green, maxlevel, tokens, antitokens)
-	self:DefineBCDungeon("Hellfire Ramparts", 5, "Hellfire Peninsula", 59, 60, 62, 70, { "hr", "ramp.*s", "rampart" })
-	self:DefineBCDungeon("Blood Furnace", 5, "Hellfire Peninsula", 60, 61, 63, 70, { "bf", "furnace", "bloo.*f" })
-	self:DefineBCDungeon("Slave Pens", 5, "Zangarmarsh", 61, 62, 64, 70, { "sp", "slav%a*", "pens" })
-	self:DefineBCDungeon("Underbog", 5, "Zangarmarsh", 62, 63, 65, 70, { "ub", "underb%a*", "bog", "under[bd]og" })
-	self:DefineBCDungeon("Manatombs", 5, "Auchindoun", 63, 64, 66, 70, { "mana", "mt", "mana%a*", "tombs?" })
-	self:DefineBCDungeon("Auchenai Crypts", 5, "Auchindoun", 64, 65, 67, 70, { "ac", "auchen%a*", "crypts?" })
-	self:DefineBCDungeon("Old Hillsbrad Foothills", 5, "Caverns of Time", 65, 66, 68, 70, { "hf", "hillsbra%a*", "foothi%a*", "durnh.*esc%a*", "cot.*1", "durn[holde]*" })
-	self:DefineBCDungeon("Sethekk Halls", 5, "Auchindoun", 66, 67, 69, 70, { "sh", "seth%a*", "set%a*halls?", "set%a*ek%a*" })
-	self:DefineBCDungeon("Steamvault", 5, "Zangarmarsh", 67, 68, 70, 70, { "sv", "stea%a*vault", "vault" })
-	self:DefineBCDungeon("Shadow Labyrinth", 5, "Auchindoun", 68, 69, 70, 70, { "sl", "slabs?", "shadow%a+", "s%a*lab", "sha.*lab%a*", "lab%a*" })
-	self:DefineBCDungeon("Black Morass", 5, "Caverns of Time", 68, 70, 70, 70, { "morass", "moras+", "black.*mo%a*", "cot.*2" }) -- changed BM to MORASS, so Beast Masters don't get confused, as BC is not the current addon anymore
-	self:DefineBCDungeon("Shattered Halls", 5, "Hellfire Peninsula", 69, 69, 70, 70, { "shh", "shatt%a*halls?", "shatt%a*d", "halls" }, { "seth%a*" })
-	self:DefineBCDungeon("Botanica", 5, "Tempest Keep", 70, 70, 70, 70, { "bot", "bota%a*" })
-	self:DefineBCDungeon("Mechanar", 5, "Tempest Keep", 70, 70, 70, 70, { "mech", "mec%a*ar", "mecha%a*" })
-	self:DefineBCDungeon("Arcatraz", 5, "Tempest Keep", 70, 70, 70, 70, { "arca", "arcat%a*", "a[lrk]a[tr]+a[sz]+" })
-	self:DefineBCDungeon("Magister's Terrace", 5, "Sunstrider Isle", 70, 70, 70, 70, { "mat", "ter+ace", "magist%a*" })
+	self:DefineBCDungeon("Hellfire Ramparts", "Hellfire Peninsula", 59, 60, 62, 70, { "hr", "ramp.*s", "rampart" })
+	self:DefineBCDungeon("Blood Furnace", "Hellfire Peninsula", 60, 61, 63, 70, { "bf", "furnace", "bloo.*f" })
+	self:DefineBCDungeon("Slave Pens", "Zangarmarsh", 61, 62, 64, 70, { "sp", "slav%a*", "pens" })
+	self:DefineBCDungeon("Underbog", "Zangarmarsh", 62, 63, 65, 70, { "ub", "underb%a*", "bog", "under[bd]og" })
+	self:DefineBCDungeon("Manatombs", "Auchindoun", 63, 64, 66, 70, { "mana", "mt", "mana%a*", "tombs?" })
+	self:DefineBCDungeon("Auchenai Crypts", "Auchindoun", 64, 65, 67, 70, { "ac", "auchen%a*", "crypts?" })
+	self:DefineBCDungeon("Old Hillsbrad Foothills", "Caverns of Time", 65, 66, 68, 70, { "hf", "hillsbra%a*", "foothi%a*", "durnh.*esc%a*", "cot.*1", "durn[holde]*" })
+	self:DefineBCDungeon("Sethekk Halls", "Auchindoun", 66, 67, 69, 70, { "sh", "seth%a*", "set%a*halls?", "set%a*ek%a*" })
+	self:DefineBCDungeon("Steamvault", "Zangarmarsh", 67, 68, 70, 70, { "sv", "stea%a*vault", "vault" })
+	self:DefineBCDungeon("Shadow Labyrinth", "Auchindoun", 68, 69, 70, 70, { "sl", "slabs?", "shadow%a+", "s%a*lab", "sha.*lab%a*", "lab%a*" })
+	self:DefineBCDungeon("Black Morass", "Caverns of Time", 68, 70, 70, 70, { "morass", "moras+", "black.*mo%a*", "cot.*2" }) -- changed BM to MORASS, so Beast Masters don't get confused, as BC is not the current addon anymore
+	self:DefineBCDungeon("Shattered Halls", "Hellfire Peninsula", 69, 69, 70, 70, { "shh", "shatt%a*halls?", "shatt%a*d", "halls" }, { "seth%a*" })
+	self:DefineBCDungeon("Botanica", "Tempest Keep", 70, 70, 70, 70, { "bot", "bota%a*" })
+	self:DefineBCDungeon("Mechanar", "Tempest Keep", 70, 70, 70, 70, { "mech", "mec%a*ar", "mecha%a*" })
+	self:DefineBCDungeon("Arcatraz", "Tempest Keep", 70, 70, 70, 70, { "arca", "arcat%a*", "a[lrk]a[tr]+a[sz]+" })
+	self:DefineBCDungeon("Magister's Terrace", "Sunstrider Isle", 70, 70, 70, 70, { "mat", "ter+ace", "magist%a*" })
 
 	-- function LFGFilter:DefineBCRaid(name, size, location, tokens, antitokens)
 	self:DefineBCRaid("Karazhan", 10, "Deadwind Pass", { "kara", "kara[hz]+an" }, { "pre", "preq%a*" })
@@ -288,22 +293,22 @@ function LFGFilter:DefineWotLKDungeons()
 	self.Dungeons = self.Dungeons or { }
 	
 	-- function LFGFilter:DefineWotlkDungeon(name, location, minlevel, yellow, green, maxlevel, tokens, antitokens)
-	self:DefineHeroDungeon("Utgarde Keep", "Howling Fjord", 65, 69, 72, 80, { "uk", "u.*keep" })
-	self:DefineHeroDungeon("The Nexus", "Borean Tundra", 66, 71, 73, 80, { "nex", "nexus", "nex%a*" })
-	self:DefineHeroDungeon("Azjol-Nerub", "Dragonblight", 67, 72, 74, 80, { "azj", "azjo?l", "nerub" })
-	self:DefineHeroDungeon("Ahn'kahet: The Old Kingdom", "Dragonblight", 68, 73, 75, 80, { "ak", "ah%a*.?kah%a*", "ahnk", "old%Wkingd%a*" })
-	self:DefineHeroDungeon("Drak'Tharon Keep", "Grizzly Hills", 69, 74, 76, 80, { "dt", "%a*k%W*tharon" })
-	self:DefineHeroDungeon("Violet Hold", "Dalaran", 70, 75, 77, 80, { "vh", "vio%a*", "v%a*%W*hold" })
-	self:DefineHeroDungeon("Gundrak", "", 71, 76, 78, 80, { "gd", "g%a*drak", "gun%Wdrak" })
-	self:DefineHeroDungeon("Halls of Stone", "The Storm Peaks", 72, 77, 79, 80, { "hos", "hall%a*stone" })
-	self:DefineHeroDungeon("Culling of Stratholme", "Tanaris", 75, 79, 80, 80, { "cos", "culling", "cot.*4", "strat", "strath%a*", "starth%a*", "straht%a*", "%a*ganis" })
-	self:DefineHeroDungeon("Utgarde Pinnacle", "Howling Fjord", 77, 79, 80, 80, { "up", "pin+ac[le]*", "ymiron" })
-	self:DefineHeroDungeon("Halls of Lightning", "The Storm Peaks", 75, 79, 80, 80, { "hol", "lightn[ing]*", "loken" })
-	self:DefineHeroDungeon("Oculus", "Borean Tundra", 75, 79, 80, 80, { "oculus", "oc+u[lus]*" })
-	--self:DefineHeroDungeon("Trial of the Champion", "Icecrown", 75, 79, 80, 80, { "toc", "trial", "trail" })
-	--self:DefineHeroDungeon("Pit of Saron", "Icecrown", 79, 80, 80, 80, { "pos", "pit+", "saron" })
-	--self:DefineHeroDungeon("Forge of Souls", "Icecrown", 79, 80, 80, 80, { "fos", "forge", "souls" })
-	--self:DefineHeroDungeon("Halls of Reflection", "Icecrown", 79, 80, 80, 80, { "hor", "reflec[tion]*" })
+	self:DefineWotlkDungeon("Utgarde Keep", "Howling Fjord", 65, 69, 72, 80, { "uk", "u.*keep" })
+	self:DefineWotlkDungeon("The Nexus", "Borean Tundra", 66, 71, 73, 80, { "nex", "nexus", "nex%a*" })
+	self:DefineWotlkDungeon("Azjol-Nerub", "Dragonblight", 67, 72, 74, 80, { "azj", "azjo?l", "nerub" })
+	self:DefineWotlkDungeon("Ahn'kahet: The Old Kingdom", "Dragonblight", 68, 73, 75, 80, { "ak", "ah%a*.?kah%a*", "ahnk", "old%Wkingd%a*" })
+	self:DefineWotlkDungeon("Drak'Tharon Keep", "Grizzly Hills", 69, 74, 76, 80, { "dt", "%a*k%W*tharon" })
+	self:DefineWotlkDungeon("Violet Hold", "Dalaran", 70, 75, 77, 80, { "vh", "vio%a*", "v%a*%W*hold" })
+	self:DefineWotlkDungeon("Gundrak", "", 71, 76, 78, 80, { "gd", "g%a*drak", "gun%Wdrak" })
+	self:DefineWotlkDungeon("Halls of Stone", "The Storm Peaks", 72, 77, 79, 80, { "hos", "hall%a*stone" })
+	self:DefineWotlkDungeon("Culling of Stratholme", "Tanaris", 75, 79, 80, 80, { "cos", "culling", "cot.*4", "strat", "strath%a*", "starth%a*", "straht%a*", "%a*ganis" })
+	self:DefineWotlkDungeon("Utgarde Pinnacle", "Howling Fjord", 77, 79, 80, 80, { "up", "pin+ac[le]*", "ymiron" })
+	self:DefineWotlkDungeon("Halls of Lightning", "The Storm Peaks", 75, 79, 80, 80, { "hol", "lightn[ing]*", "loken" })
+	self:DefineWotlkDungeon("Oculus", "Borean Tundra", 75, 79, 80, 80, { "oculus", "oc+u[lus]*" })
+	--self:DefineWotlkDungeon("Trial of the Champion", "Icecrown", 75, 79, 80, 80, { "toc", "trial", "trail" })
+	--self:DefineWotlkDungeon("Pit of Saron", "Icecrown", 79, 80, 80, 80, { "pos", "pit+", "saron" })
+	--self:DefineWotlkDungeon("Forge of Souls", "Icecrown", 79, 80, 80, 80, { "fos", "forge", "souls" })
+	--self:DefineWotlkDungeon("Halls of Reflection", "Icecrown", 79, 80, 80, 80, { "hor", "reflec[tion]*" })
 
 	-- function LFGFilter:DefineWotlkRaid(name, location, tokens, antitokens)
 	self:DefineWotlkRaid("Naxxramas", "Dragonblight", { "naxx", "naxx%a*", "k?e?l?%W?thuzad" })

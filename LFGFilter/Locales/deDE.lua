@@ -129,7 +129,7 @@ if (L) then
 	L["MANA-Tokens"] = { "mg", "gruft", "man.*gr%a*", "mana" }
 
 	L["Auchenai Crypts"] = "Auchenaikrypta"
-	L["AC-Tokens"] = { "ak", "%a*krypta?", "auche%a*", "crypta?" }
+	L["AC-Tokens"] = { "ak", "%a*krypta?", "auche%a*", "crypta?" } 
 
 	L["Old Hillsbrad Foothills"] = "Vorgebirge des alten Hügellands"
 	L["HF-Tokens"] = { "hdz1?", "alt.*huegell%a*", "zeit.*1" }
@@ -139,7 +139,7 @@ if (L) then
 	L["SH-Tokens"] = { "sethekk", "set%a*[%-]?hall%a*", "se%a*ek+" }
 
 	L["Steamvault"] = "Dampfkammer"
-	L["SV-Tokens"] = { "dk", "dampf%a*", "d[mapf]+k[ame]+r" }
+	L["SV-Tokens"] = { "dampf%a*", "d[mapf]+k[ame]+r" } -- removed "dk" as it is now used for Death Knights
 
 	L["Shadow Labyrinth"] = "Schattenlabyrinth"
 	L["SL-Tokens"] = { "schlab%a*", "schattenl%a*", "schlap+[iy]e?" }
@@ -149,7 +149,7 @@ if (L) then
 	L["SHH-AntiTokens"] = { "set%a*" }
 
 	L["Black Morass"] = "Der Schwarze Morast"
-	L["BM-Tokens"] = { "mor+ast", "hdz.*2", "zeit.*2" }
+	L["MORASS-Tokens"] = { "mor+ast", "hdz.*2", "zeit.*2" }
 
 	L["Botanica"] = "Botanica"
 	L["BOT-Tokens"] = { }
@@ -200,13 +200,14 @@ if (L) then
   L["NEX-Tokens"] = {}
 
   L["Azjol-Nerub"] = "Azjol-Nerub"
-  L["AN-Tokens"] = {}
+  L["AZJ-Tokens"] = {}
 
   L["Ahn'kahet: The Old Kingdom"] = "Ahn'kahet: Das alte Königreich"
   L["AK-Tokens"] = {}
 
   L["Drak'Tharon Keep"] = "Feste Drak'Tharon"
   L["DT-Tokens"] = { "feste" }
+	L["DT-AntiTokens"] = { "vio%a*" } -- welcher Idiot schreibt "Violette Feste"? seufz...
 
   L["The Violet Hold"] = "Violette Festung"
   L["VH-Tokens"] = { "viol*.fest%a*" }
@@ -215,7 +216,7 @@ if (L) then
   L["GD-Tokens"] = {}
 
   L["Halls of Stone"] = "Hallen des Steins"
-  L["HOS-Tokens"] = { "hds", "hallen.*stein%a*" }
+  L["HOS-Tokens"] = { "hds", "hall.*stein%a*" }
 
   L["The Culling of Stratholme"] = "Das Ausmerzen von Stratholme"
   L["COS-Tokens"] = { "ausmerz%a*", "hdz.*4", "zeit.*4" }
@@ -253,7 +254,7 @@ if (L) then
   L["OBSI-Tokens"] = {}
 
   L["Vault of Archavon"] = "Archavons Kammer"
-  L["VOA-Tokens"] = {}
+  L["VOA-Tokens"] = { "ak" }
 
   --L[""] = ""
   --L["-Tokens"] = {}

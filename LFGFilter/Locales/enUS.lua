@@ -148,7 +148,7 @@ if L then
     L["SHH-Tokens"] = {}
 
     L["Black Morass"] = "Black Morass"
-    L["BM-Tokens"] = {}
+    L["MORASS-Tokens"] = {}
 
     L["Botanica"] = "Botanica"
     L["BOT-Tokens"] = {}
@@ -199,7 +199,7 @@ if L then
     L["NEX-Tokens"] = {}
 
     L["Azjol-Nerub"] = "Azjol-Nerub"
-    L["AN-Tokens"] = {}
+    L["AZJ-Tokens"] = {}
 
     L["Ahn'kahet: The Old Kingdom"] = "Ahn'kahet: The Old Kingdom"
     L["AK-Tokens"] = {}

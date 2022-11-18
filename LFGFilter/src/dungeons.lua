@@ -140,6 +140,15 @@ local function IsDungeonMatch(line, dungeon)
 	return false
 end
 
+function RemoveDungeonFromTable(dungeons, key)
+	for i, n in pairs(dungeons)
+		if (n == key) then
+			table.remove(i)
+			return
+		end
+	end
+end
+
 function LFGFilter:GetMatchingDungeons(message)
 	local result = { }
 	local matchLevel = 0
@@ -164,8 +173,11 @@ function LFGFilter:GetMatchingDungeons(message)
 			end
 			-- if Deadmines is found, but other dungeons are lvl > 40, most probably Dire Maul was meant!
 			if (DMKey and ifOver40) then
+				-- replace "The Deadmines" in result table with "Dire Maul"
 				local dungeon = LFGFilter.Dungeons["Dire Maul"]
-				result[DMKey] = nil --result[DMKey] = dungeon -- wtf did I here?
+				--result[DMKey] = dungeon -- doesn't seem to work, check why!
+				RemoveDungeonFromTable(result, DMKey)
+				table.insert(result, dungeon.Name)
 				local diff = self:GetDifficulty(dungeon)
 				local dOffset = 3 - abs(3-diff)
 				if (dOffset > matchLevel) then

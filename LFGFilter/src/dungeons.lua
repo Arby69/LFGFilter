@@ -29,6 +29,7 @@ function LFGFilter:DefineDungeon(addon, name, size, location, faction, minlevel,
 	if tokens and type(tokens) == "table" and #tokens > 0 then
 		shortname = tokens[1]
 	end
+	shortname = string.upper(shortname)
 	location = location or ""
 	local dungeon = {
 		Name = name,

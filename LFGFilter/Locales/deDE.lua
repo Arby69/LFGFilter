@@ -164,19 +164,19 @@ if (L) then
 	L["MAT-Tokens"] = { "ter+as+e", "magister", "tdm" }
 
 	L["Karazhan"] = "Karazhan"
-	L["KARA-Tokens"] = { "kara", "marken.*run"}
+	L["KARA-Tokens"] = { }
 
 	L["Gruul's Lair"] = "Gruuls Unterschlupf"
 	L["GRUUL-Tokens"] = { "unterschlu%a*" }
 
 	L["Magtheridon's Lair"] = "Magtheridons Kammer"
-	L["MAG-Tokens"] = { "magt%a*", "kammer" }
+	L["MAG-Tokens"] = { "magt%a*" }
 
 	L["Serpentshrine Cavern"] = "Höhle des Schlangenschreins"
-	L["SSC-Tokens"] = { "schlangenschrein", "schlang%a*", "vashj", "hoehl.*d.*schlangensc%a*" }
+	L["SSC-Tokens"] = { "schlangenschrein", "schlang%a*", "vashj", "hoehl.*%Wd.*schlangensc%a*" }
 
 	L["Tempest Keep"] = "Festung der Stürme"
-	L["TK-Tokens"] = { "fds", "festung", "stuerme", "auge" }
+	L["TK-Tokens"] = { "fds", "fest.*%Wd.*stue?r%a*", "stuerme" }
 
 	L["Zul Aman"] = "Zul Aman"
 	L["ZA-Tokens"] = { "baer.*run" }
@@ -241,6 +241,9 @@ if (L) then
 
   L["Halls of Reflection"] = "Hallen der Reflexion"
   L["HOR-Tokens"] = { "hdr", "halle.*reflex%a*" }
+
+	L["World Tour"] = "World Tour"
+	L["TOUR-Tokens"] = {}
 
   -- Raids 
 

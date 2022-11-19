@@ -279,7 +279,7 @@ function LFGFilter:DefineBCCDungeons()
 	-- function LFGFilter:DefineBCRaid(name, size, location, tokens, antitokens)
 	self:DefineBCRaid("Karazhan", 10, "Deadwind Pass", { "kara", "kara[hz]+an" }, { "pre", "preq%a*" })
 	self:DefineBCRaid("Gruul's Lair", 25, "Blade's Edge", { "gruul", "gru+ls?" })
-	self:DefineBCRaid("Magtheridon's Lair", 25, "Hellfire Peninsula", { "mag", "mag[theridon]+" })
+	self:DefineBCRaid("Magtheridon's Lair", 25, "Hellfire Peninsula", { "mag", "magt[heridon]+" })
 	self:DefineBCRaid("Serpentshrine Cavern", 25, "Zangarmarsh", { "ssc", "serpents[shrine]+" })
 	self:DefineBCRaid("Tempest Keep", 25, "Netherstorm", { "tk", "the keep", "tempest" }) -- "the eye" removed, collides with "eye of eternity" (Malygos)
 	self:DefineBCRaid("Zul Aman", 10, "Ghostlands", { "za", "bear.*run", "aman" })
@@ -313,7 +313,7 @@ function LFGFilter:DefineWotLKDungeons()
 
 	-- function LFGFilter:DefineWotlkRaid(name, location, tokens, antitokens)
 	self:DefineWotlkRaid("Naxxramas", "Dragonblight", { "naxx", "naxx%a*", "k?e?l?%W?thuzad" })
-	self:DefineWotlkRaid("Malygos", "Borean Tundra", { "maly", "maly[gos]+", "eye%Wof%Weter[nity]+" })
+	self:DefineWotlkRaid("Malygos", "Borean Tundra", { "maly", "mal+y[gos]+", "eye%Wof%Weter[nity]+" })
 	self:DefineWotlkRaid("Obsidian Sanctum", "Dragonblight", { "obsi", "sanctum", "obsi%dd?", "obsi.%d" })
 	self:DefineWotlkRaid("Vault of Archavon", "Wintergrasp", { "voa", "archa[von]*" })
 	--self:DefineWotlkRaid("Ulduar", "The Storm Peaks", { "ulduar" })
@@ -321,5 +321,7 @@ function LFGFilter:DefineWotLKDungeons()
 	--self:DefineWotlkRaid("Icecrown Citadel", "Icecrown", { "icc" })
 	--self:DefineWotlkRaid("Ruby Sanctum", "Dragonblight", { "ruby" })
 	--self:DefineWotlkRaid("Onyxia's Lair", "Dustwallow Marsh", { "ony", "onyxia" }, { "pre" }) -- not yet active
+
+	self:DefineWotlkDungeon("World Tour", "Northrend", 80, 80, 80, 80, { "tour" })
 
 end

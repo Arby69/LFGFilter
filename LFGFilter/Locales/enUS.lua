@@ -240,6 +240,9 @@ if L then
     L["Halls of Reflection"] = "Halls of Reflection"
     L["HOR-Tokens"] = {}
 
+    L["World Tour"] = "World Tour"
+	  L["TOUR-Tokens"] = {}
+
     -- Raids 
 
     -- L["Naxxramas"] = "Naxxramas" -- already defined in Classic section

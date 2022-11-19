@@ -24,11 +24,11 @@ end
 
 function AddPattern(tokens, expr, wotlkraid)
 	if expr then
-		if type(expr) == table then
+		if (type(expr) == "table") then
 			for _, tok in pairs(expr) do
-				table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
+				table.insert(tokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
 				if (wotlkraid) then
-					table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%d%d['ers]+%W")
+					table.insert(tokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%d%d['ners]*%W")
 				end
 			end
 		else
@@ -256,8 +256,8 @@ function LFGFilter:DefineDungeons()
 	self:DefineClassicDungeon("Scholomance", "Western Plaguelands", LFGFilter.Factions.BOTH, 56, 58, 60, 60, { "scholo", "scholo.*" })
 
 	-- Grouping Dungeons
-	self:DefineClassicDungeon("Dire Maul", "Feralas", LFGFilter.Factions.BOTH, 55, 58, 60, 60, {})
-	self:DefineClassicDungeon("The Scarlet Monastery", "Tirisfal", LFGFilter.Factions.BOTH, 23, 26, 42, 45, {})
+	self:DefineClassicDungeon("Dire Maul", "Feralas", LFGFilter.Factions.BOTH, 55, 58, 60, 60, { "diremaul" })
+	self:DefineClassicDungeon("The Scarlet Monastery", "Tirisfal", LFGFilter.Factions.BOTH, 23, 26, 42, 45, { "monastery" })
 
 	-- RAIDS
 	-- function LFGFilter:DefineClassicRaid(name, size, location, minlevel, yellow, tokens, antitokens)
@@ -335,7 +335,7 @@ function LFGFilter:DefineWotLKDungeons()
 	-- function LFGFilter:DefineWotlkRaid(name, location, tokens, antitokens)
 	self:DefineWotlkRaid("Naxxramas", "Dragonblight", { "naxx", "naxx%a*", "k?e?l?%W?thuzad" })
 	self:DefineWotlkRaid("Malygos", "Borean Tundra", { "maly", "mal+y[gos]+", "eye%Wof%Weter[nity]+" })
-	self:DefineWotlkRaid("Obsidian Sanctum", "Dragonblight", { "obsi", "sanctum", "obsi%dd?", "obsi.%d" })
+	self:DefineWotlkRaid("Obsidian Sanctum", "Dragonblight", { "obsi", "sanctum", "obsi%dd?", "obsi.%d", "sarth[arion]*" })
 	self:DefineWotlkRaid("Vault of Archavon", "Wintergrasp", { "voa", "archa[von]*" })
 	--self:DefineWotlkRaid("Ulduar", "The Storm Peaks", { "ulduar" })
 	--self:DefineWotlkRaid("Trial of the Crusader", "Icecrown", { })
@@ -343,6 +343,6 @@ function LFGFilter:DefineWotLKDungeons()
 	--self:DefineWotlkRaid("Ruby Sanctum", "Dragonblight", { "ruby" })
 	--self:DefineWotlkRaid("Onyxia's Lair", "Dustwallow Marsh", { "ony", "onyxia" }, { "pre" }) -- not yet active
 
-	self:DefineWotlkDungeon("World Tour", "Northrend", 80, 80, 80, 80, { "tour" })
+	self:DefineWotlkDungeon("World Tour", "Northrend", 80, 80, 80, 80, { "tour", "worldtour" })
 
 end

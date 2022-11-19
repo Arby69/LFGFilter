@@ -34,7 +34,7 @@ if L then
     L["RK-Tokens"] = { }
 
     L["The Scarlet Monastery"] = "The Scarlet Monastery"
-    L["SM-Tokens"] = { }
+    L["MONASTERY-Tokens"] = { }
 
     L["The Scarlet Monastery: Graveyard"] = "The Scarlet Monastery: Graveyard"
     L["GY-Tokens"] = { }
@@ -79,7 +79,7 @@ if L then
     L["SCHOLO-Tokens"] = { }
 
     L["Dire Maul"] = "Dire Maul"
-    L["DMAUL-Tokens"] = { }
+    L["DIREMAUL-Tokens"] = { }
 
     L["Dire Maul East"] = "Dire Maul East"
     L["DMEAST-Tokens"] = { }
@@ -251,7 +251,7 @@ if L then
     L["Malygos"] = "Malygos"
     L["MALY-Tokens"] = {}
 
-    L["The Obsidian Sanctum"] = "The Obsidian Sanctum"
+    L["Obsidian Sanctum"] = "The Obsidian Sanctum"
     L["OBSI-Tokens"] = {}
 
     L["Vault of Archavon"] = "Vault of Archavon"

@@ -36,6 +36,8 @@ if (L) then
 	L["RK-Tokens"] = { "kral", "kdk" }
 
 	L["The Scarlet Monastery"] = "Scharlachrotes Kloster"
+	L["MONASTERY-Tokens"] = { "kloster", "scharlachrotes" }
+
 	L["The Scarlet Monastery: Graveyard"] = "Scharlachrotes Kloster: Friedhof"
 	L["GY-Tokens"] = { "fh", "friedhof" }
 
@@ -80,6 +82,8 @@ if (L) then
 	L["SCHOLO-Tokens"] = { } -- keine besonderen deutschen Kürzel
 
 	L["Dire Maul"] = "Düsterbruch"
+	L["DIREMAUL-Tokens"] = {}
+
 	L["Dire Maul East"] = "Düsterbruch Ost"
 	L["DMEAST-Tokens"] = { "db.*ost", "due?st.*ost", "dm.*ost", "dire.*ost" }
 
@@ -253,11 +257,11 @@ if (L) then
   L["Malygos"] = "Malygos"
   L["MALY-Tokens"] = {}
 
-  L["The Obsidian Sanctum"] = "Das Obsidiansanktum"
+  L["Obsidian Sanctum"] = "Das Obsidiansanktum"
   L["OBSI-Tokens"] = {}
 
   L["Vault of Archavon"] = "Archavons Kammer"
-  L["VOA-Tokens"] = { "ak" }
+  L["VOA-Tokens"] = { "ak", "arch%a*von.*kammer" }
 
   --L[""] = ""
   --L["-Tokens"] = {}

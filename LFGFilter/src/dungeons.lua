@@ -22,11 +22,28 @@ function LFGFilter:DefineWotlkRaid(name, location, tokens, antitokens)
 	return LFGFilter:DefineDungeon("wotlk", name, 25, location, LFGFilter.Factions.BOTH, 80, 80, 80, 80, 80, tokens, antitokens)
 end
 
+function AddPattern(tokens, expr, wotlkraid)
+	if expr then
+		if type(expr) == table then
+			for _, tok in pairs(expr) do
+				table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
+				if (wotlkraid) then
+					table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%d%d['ers]+%W")
+				end
+			end
+		else
+			table.insert(tokens, "%W" .. LFGFilter.ReplaceUmlauts(expr) .. "%W")
+		end
+	end
+end
+
 function LFGFilter:DefineDungeon(addon, name, size, location, faction, minlevel, yellow, green, maxlevel, herolevel, tokens, antitokens)
 	local lName = self.Locale[name] or name
 	-- local shortname = string.upper(tokens[1] or name)
 	local shortname = name
-	if tokens and type(tokens) == "table" and #tokens > 0 then
+	tokens = tokens or {}
+	antitokens = antitokens or {}
+	if type(tokens) == "table" and #tokens > 0 then
 		shortname = tokens[1]
 	end
 	shortname = string.upper(shortname)
@@ -48,33 +65,46 @@ function LFGFilter:DefineDungeon(addon, name, size, location, faction, minlevel,
 		Tokens = { },
 		AntiTokens = { },
 	}
-	table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(string.lower(name)) .. "%W")
+	local isWotlkRaid = (addon == "wotlk" and size == 25)
+	--table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(string.lower(name)) .. "%W")
+	AddPattern(dungeon.Tokens, string.lower(name))
 	if (name ~= lName) then
-		table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(string.lower(lName)) .. "%W")
+		--table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(string.lower(lName)) .. "%W")
+		AddPattern(dungeon.Tokens, string.lower(lName))
 	end
-	if (type(tokens) == "table") then
-		for _, tok in pairs(tokens) do
-			table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
-		end
-	end
-	if (type(antitokens) == "table") then
-		for _, tok in pairs(antitokens) do
-			table.insert(dungeon.AntiTokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
-		end
-	end
+--	if (type(tokens) == "table") then
+--		for _, tok in pairs(tokens) do
+--			table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
+--			if (addon == "wotlk" and size == 25) then
+--				table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%d%d['ers]+%W")
+--			end
+--		end
+--	end
+	AddPattern(dungeon.Tokens, tokens, isWotlkRaid)
+--	if (type(antitokens) == "table") then
+--		for _, tok in pairs(antitokens) do
+--			table.insert(dungeon.AntiTokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
+--		end
+--	end
+	AddPattern(dungeon.AntiTokens, antitokens)
 	if (name ~= "Custom") then
 		local locTokens = self.Locale[shortname .. "-Tokens"] or {}
-		if (type(locTokens) == "table") then
-			for _, tok in pairs(locTokens) do
-				table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
-			end
-		end
+--		if (type(locTokens) == "table") then
+--			for _, tok in pairs(locTokens) do
+--				table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
+--				if (addon == "wotlk" and size == 25) then
+--					table.insert(dungeon.Tokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%d%d['ers]+%W")
+--				end
+--			end
+--		end
+		AddPattern(dungeon.Tokens, locTokens, isWotlkRaid)
 		local locAnti = self.Locale[shortname .. "-AntiTokens"] or {}
-		if (type(locAnti) == "table") then
-			for _, tok in pairs(locAnti) do
-				table.insert(dungeon.AntiTokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
-			end
-		end
+--		if (type(locAnti) == "table") then
+--			for _, tok in pairs(locAnti) do
+--				table.insert(dungeon.AntiTokens, "%W" .. LFGFilter.ReplaceUmlauts(tok) .. "%W")
+--			end
+--		end
+		AddPattern(dungeon.AntiTokens, locAnti)
 	end
 	self.Dungeons[name] = dungeon
 end
@@ -132,15 +162,6 @@ local function IsDungeonMatch(line, dungeon)
 	for _, token in pairs(dungeon.Tokens) do
 		if (string.find(line, token)) then
 			return true
-		end
-		-- add some logic to consider 10/25 selection in wotlk raids
-		if (dungeon.Addon == "wotlk" and dungeon.IsRaid) then
-		  if (string.find(line, token .. "10")) then
-				return true
-			end
-			if (string.find(line, token .. "25")) then
-				return true
-			end
 		end
 	end
 	return false

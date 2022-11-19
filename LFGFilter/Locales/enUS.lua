@@ -202,12 +202,12 @@ if L then
     L["AZJ-Tokens"] = {}
 
     L["Ahn'kahet: The Old Kingdom"] = "Ahn'kahet: The Old Kingdom"
-    L["AK-Tokens"] = {}
+    L["AHNK-Tokens"] = {}
 
     L["Drak'Tharon Keep"] = "Drak'Tharon Keep"
     L["DT-Tokens"] = {}
 
-    L["The Violet Hold"] = "The Violet Hold"
+    L["Violet Hold"] = "Violet Hold"
     L["VH-Tokens"] = {}
 
     L["Gundrak"] = "Gundrak"
@@ -216,7 +216,7 @@ if L then
     L["Halls of Stone"] = "Halls of Stone"
     L["HOS-Tokens"] = {}
 
-    L["The Culling of Stratholme"] = "The Culling of Stratholme"
+    L["Culling of Stratholme"] = "Culling of Stratholme"
     L["COS-Tokens"] = {}
 
     L["Utgarde Pinnacle"] = "Utgarde Pinnacle"
@@ -225,7 +225,7 @@ if L then
     L["Halls of Lightning"] = "Halls of Lightning"
     L["HOL-Tokens"] = {}
 
-    L["The Oculus"] = "The Oculus"
+    L["Oculus"] = "Oculus"
     L["OCU-Tokens"] = {}
 
     L["Trial of the Champion"] = "Trial of the Champion"
@@ -234,7 +234,7 @@ if L then
     L["Pit of Saron"] = "Pit of Saron"
     L["POS-Tokens"] = {}
 
-    L["The Forge of Souls"] = "The Forge of Souls"
+    L["Forge of Souls"] = "Forge of Souls"
     L["FOS-Tokens"] = {}
 
     L["Halls of Reflection"] = "Halls of Reflection"

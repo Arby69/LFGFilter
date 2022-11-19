@@ -129,7 +129,7 @@ if (L) then
 	L["MANA-Tokens"] = { "mg", "gruft", "man.*gr%a*", "mana" }
 
 	L["Auchenai Crypts"] = "Auchenaikrypta"
-	L["AC-Tokens"] = { "ak", "%a*krypta?", "auche%a*", "crypta?" } 
+	L["AC-Tokens"] = { "%a*krypta?", "auche%a*", "crypta?" } 
 
 	L["Old Hillsbrad Foothills"] = "Vorgebirge des alten Hügellands"
 	L["HF-Tokens"] = { "hdz1?", "alt.*huegell%a*", "zeit.*1" }
@@ -203,13 +203,13 @@ if (L) then
   L["AZJ-Tokens"] = {}
 
   L["Ahn'kahet: The Old Kingdom"] = "Ahn'kahet: Das alte Königreich"
-  L["AK-Tokens"] = {}
+  L["AHNK-Tokens"] = {}
 
   L["Drak'Tharon Keep"] = "Feste Drak'Tharon"
   L["DT-Tokens"] = { "feste" }
 	L["DT-AntiTokens"] = { "vio%a*" } -- welcher Idiot schreibt "Violette Feste"? seufz...
 
-  L["The Violet Hold"] = "Violette Festung"
+  L["Violet Hold"] = "Violette Festung"
   L["VH-Tokens"] = { "viol*.fest%a*" }
 
   L["Gundrak"] = "Gundrak"
@@ -218,7 +218,7 @@ if (L) then
   L["Halls of Stone"] = "Hallen des Steins"
   L["HOS-Tokens"] = { "hds", "hall.*stein%a*" }
 
-  L["The Culling of Stratholme"] = "Das Ausmerzen von Stratholme"
+  L["Culling of Stratholme"] = "Das Ausmerzen von Stratholme"
   L["COS-Tokens"] = { "ausmerz%a*", "hdz.*4", "zeit.*4" }
 
   L["Utgarde Pinnacle"] = "Turm Utgarde"
@@ -227,7 +227,7 @@ if (L) then
   L["Halls of Lightning"] = "Hallen der Blitze"
   L["HOL-Tokens"] = { "hdb", "hall.*blitz%a*" }
 
-  L["The Oculus"] = "Der Oculus"
+  L["Oculus"] = "Der Oculus"
   L["OCU-Tokens"] = {}
 
   L["Trial of the Champion"] = "Prüfung des Champions"
@@ -236,7 +236,7 @@ if (L) then
   L["Pit of Saron"] = "Grube von Saron"
   L["POS-Tokens"] = { "gvs", "grube" }
 
-  L["The Forge of Souls"] = "Die Seelenschmiede"
+  L["Forge of Souls"] = "Die Seelenschmiede"
   L["FOS-Tokens"] = { "ss", "seelens%a*" }
 
   L["Halls of Reflection"] = "Hallen der Reflexion"

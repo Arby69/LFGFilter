@@ -136,7 +136,7 @@ if (L) then
 	L["AC-Tokens"] = { "%a*krypta?", "auche%a*", "crypta?" } 
 
 	L["Old Hillsbrad Foothills"] = "Vorgebirge des alten Hügellands"
-	L["HF-Tokens"] = { "hdz1?", "alt.*huegell%a*", "zeit.*1" }
+	L["HF-Tokens"] = { "hdz%W*1", "alt.*huegell%a*", "zeit.*1" }
 	L["HF-AntiTokens"] = { "hdz.*2" }
 
 	L["Sethekk Halls"] = "Sethekkhallen"
@@ -248,6 +248,9 @@ if (L) then
 
 	L["World Tour"] = "World Tour"
 	L["TOUR-Tokens"] = {}
+
+	L["Daily"] = "Daily"
+	L["DAILY-Tokens"] = { "tägl[iche]+" }
 
   -- Raids 
 

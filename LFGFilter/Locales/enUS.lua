@@ -243,6 +243,9 @@ if L then
     L["World Tour"] = "World Tour"
 	  L["TOUR-Tokens"] = {}
 
+    L["Daily"] = "Daily"
+    L["DAILY-Tokens"] = {}
+
     -- Raids 
 
     -- L["Naxxramas"] = "Naxxramas" -- already defined in Classic section

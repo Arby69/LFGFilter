@@ -21,8 +21,8 @@ function LFGFilter:ParseMessage(message)
 				local hasRole = LFGFilter.MessageHasToken(lowerMessage, self.RoleTags)
 				local hasLfg = LFGFilter.MessageHasToken(lowerMessage, self.LfgTags) 
 				local hasLfm = LFGFilter.MessageHasToken(lowerMessage, self.LfmTags) 
-				local dungeons, matchLevel = self:GetMatchingDungeons(lowerMessage)
 				local ishero = LFGFilter.MessageHasToken(lowerMessage, self.HeroTags)
+				local dungeons, matchLevel, ishero = self:GetMatchingDungeons(lowerMessage, ishero)
 				local isQuest = LFGFilter.IsQuest(message)
 				if isQuest then
 					matchLevel = 3

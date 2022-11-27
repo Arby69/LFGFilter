@@ -15,12 +15,27 @@ LFGFilter.Filters = {
 	ADD_IRRELEVANT = 64,
 }
 
+local RED = { r = 255, g = 0, b = 0 }
+local ORANGE = { r = 255, g = 128, b = 64 }
+local YELLOW = { r = 255, g = 255, b = 0 }
+local GREEN = { r = 0, g = 168, b = 0 }
+local GREY = { r = 128, g = 128, b = 128 }
+
 function LFGFilter:OnInitialize()
 	self.Initialized = true
+	self.Colors = { }
+	self.Colors[0] = self.Config.DungeonNameColor
+	self.Colors[1] = GREY
+	self.Colors[2] = GREEN
+	self.Colors[3] = YELLOW
+	self.Colors[4] = ORANGE
+	self.Colors[5] = RED
+	self.Dungeons = { }
 	self:DefineTokens()
-	self:DefineDungeons()
+	self:DefineClassicDungeons()
 	self:DefineBCCDungeons()
 	self:DefineWotLKDungeons()
+	self:DefineDungeon("", "Custom")
 	self.Groups = { }
 end
 

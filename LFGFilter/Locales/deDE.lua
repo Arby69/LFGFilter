@@ -198,7 +198,8 @@ if (L) then
   -- Wrath of the Lich King
 
   L["Utgarde Keep"] = "Burg Utgarde"
-  L["UK-Tokens"] = { "burg", "bu" }
+  L["UK-Tokens"] = { "burg", "bu", "bu%a+%Wutg[arde]*" }
+	--L["UK-AntiTokens"] = { "turm" }
   
   L["The Nexus"] = "Der Nexus"
   L["NEX-Tokens"] = {}
@@ -226,7 +227,8 @@ if (L) then
   L["COS-Tokens"] = { "ausmerz%a*", "hdz.*4", "zeit.*4" }
 
   L["Utgarde Pinnacle"] = "Turm Utgarde"
-  L["UP-Tokens"] = { "turm", "tu" }
+  L["UP-Tokens"] = { "turm", "tu",  "tu%a+%Wutg[arde]*" }
+	--L["UP-AntiTokens"] = { "burg" }
 
   L["Halls of Lightning"] = "Hallen der Blitze"
   L["HOL-Tokens"] = { "hdb", "hall.*blitz%a*" }

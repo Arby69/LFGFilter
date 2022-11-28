@@ -86,16 +86,16 @@ function LFGFilter:DefineWotLKDungeons()
 	self.Dungeons = self.Dungeons or { }
 	
 	-- function LFGFilter:DefineWotlkDungeon(name, location, minlevel, yellow, green, maxlevel, tokens, antitokens)
-	self:DefineWotlkDungeon("Utgarde Keep", "Howling Fjord", 65, 69, 72, 80, { "uk", "u.*keep", "utgar[de]*" }, { "pinn%a*" }, { {477,1}, {17213,2}, {489,2}, {1919,2} })
+	self:DefineWotlkDungeon("Utgarde Keep", "Howling Fjord", 65, 69, 72, 80, { "uk", "u.*keep", "utgar[de]*%W[kep]+" }, , { {477,1}, {17213,2}, {489,2}, {1919,2} })
 	self:DefineWotlkDungeon("The Nexus", "Borean Tundra", 66, 71, 73, 80, { "nex", "nexus", "nex%a*" })
 	self:DefineWotlkDungeon("Azjol-Nerub", "Dragonblight", 67, 72, 74, 80, { "azj", "azjo?l", "nerub" })
-	self:DefineWotlkDungeon("Ahn'kahet: The Old Kingdom", "Dragonblight", 68, 73, 75, 80, { "ahnk", "ah%a*.?kah%a*", "old%Wkingd%a*" })
+	self:DefineWotlkDungeon("Ahn'kahet: The Old Kingdom", "Dragonblight", 68, 73, 75, 80, { "ahnk", "ah%a*.?kah%a*", "old%Wkingd%a*", "ah?nkah?et" })
 	self:DefineWotlkDungeon("Drak'Tharon Keep", "Grizzly Hills", 69, 74, 76, 80, { "dt", "%a*k%W*tharon", "drak%W*th%a*" })
 	self:DefineWotlkDungeon("Violet Hold", "Dalaran", 70, 75, 77, 80, { "vh", "vio%a*", "v%a*%W*hold" })
 	self:DefineWotlkDungeon("Gundrak", "", 71, 76, 78, 80, { "gd", "g%a*drak", "gun%Wdrak" })
 	self:DefineWotlkDungeon("Halls of Stone", "The Storm Peaks", 72, 77, 79, 80, { "hos", "hall%a*stone" })
 	self:DefineWotlkDungeon("Culling of Stratholme", "Tanaris", 75, 79, 80, 80, { "cos", "culling", "cot.*4", "strat", "strath%a*", "starth%a*", "straht%a*", "%a*ganis" })
-	self:DefineWotlkDungeon("Utgarde Pinnacle", "Howling Fjord", 77, 79, 80, 80, { "up", "pin+ac[le]*", "ymiron", "utgar[de]*" }, { "ke+p" })
+	self:DefineWotlkDungeon("Utgarde Pinnacle", "Howling Fjord", 77, 79, 80, 80, { "up", "pin+ac[le]*", "ymiron", "utgar[de]*%Wpin+[acle]*" })
 	self:DefineWotlkDungeon("Halls of Lightning", "The Storm Peaks", 75, 79, 80, 80, { "hol", "lightn[ing]*", "loken" })
 	self:DefineWotlkDungeon("Oculus", "Borean Tundra", 75, 79, 80, 80, { "oculus", "oc+o?[lus]*" })
 	--self:DefineWotlkDungeon("Trial of the Champion", "Icecrown", 75, 79, 80, 80, { "toc", "trial", "trail" })
@@ -116,5 +116,6 @@ function LFGFilter:DefineWotLKDungeons()
 
 	self:DefineWotlkDungeon("World Tour", "Northrend", 80, 80, 80, 80, { "tour", "worldtour" })
 	self:DefineWotlkDungeon("Daily", "", 80, 80, 80, 80, { "daily", "dayl[iey]+" })
+	self:DefineWotlkDungeon("PvP", "", 80, 80, 80, 80, { "pvp", "2vs2", "3vs3", "5vs5" })
 
 end

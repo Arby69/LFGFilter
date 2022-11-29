@@ -86,7 +86,7 @@ function LFGFilter:DefineWotLKDungeons()
 	self.Dungeons = self.Dungeons or { }
 	
 	-- function LFGFilter:DefineWotlkDungeon(name, location, minlevel, yellow, green, maxlevel, tokens, antitokens)
-	self:DefineWotlkDungeon("Utgarde Keep", "Howling Fjord", 65, 69, 72, 80, { "uk", "u.*keep", "utgar[de]*%W[kep]+" }, , { {477,1}, {17213,2}, {489,2}, {1919,2} })
+	self:DefineWotlkDungeon("Utgarde Keep", "Howling Fjord", 65, 69, 72, 80, { "uk", "u.*keep", "utgar[de]*%W[kep]+" }, nil, { {477,1}, {17213,2}, {489,2}, {1919,2} })
 	self:DefineWotlkDungeon("The Nexus", "Borean Tundra", 66, 71, 73, 80, { "nex", "nexus", "nex%a*" })
 	self:DefineWotlkDungeon("Azjol-Nerub", "Dragonblight", 67, 72, 74, 80, { "azj", "azjo?l", "nerub" })
 	self:DefineWotlkDungeon("Ahn'kahet: The Old Kingdom", "Dragonblight", 68, 73, 75, 80, { "ahnk", "ah%a*.?kah%a*", "old%Wkingd%a*", "ah?nkah?et" })
@@ -116,6 +116,6 @@ function LFGFilter:DefineWotLKDungeons()
 
 	self:DefineWotlkDungeon("World Tour", "Northrend", 80, 80, 80, 80, { "tour", "worldtour" })
 	self:DefineWotlkDungeon("Daily", "", 80, 80, 80, 80, { "daily", "dayl[iey]+" })
-	self:DefineWotlkDungeon("PvP", "", 80, 80, 80, 80, { "pvp", "2vs2", "3vs3", "5vs5" })
+	self:DefineWotlkDungeon("PvP", "", 80, 80, 80, 80, { "pvp", "2vs?2", "3vs?3", "5vs?5", "2on2", "3on3", "5on5" })
 
 end

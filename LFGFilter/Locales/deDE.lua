@@ -150,7 +150,7 @@ if (L) then
 
 	L["Shattered Halls"] = "Zerschmetterte Hallen"
 	L["SHH-Tokens"] = { "zh", "zersch.*hallen?", "a%schmet.*hallen?", "hallen" }
-	L["SHH-AntiTokens"] = { "set%a*" }
+	L["SHH-AntiTokens"] = { "set%a*", "blitz%a*" }
 
 	L["Black Morass"] = "Der Schwarze Morast"
 	L["MORASS-Tokens"] = { "mor+ast", "hdz.*2", "zeit.*2" }
@@ -199,7 +199,7 @@ if (L) then
 
   L["Utgarde Keep"] = "Burg Utgarde"
   L["UK-Tokens"] = { "burg", "bu", "bu%a+%Wutg[arde]*" }
-	--L["UK-AntiTokens"] = { "turm" }
+	L["UK-AntiTokens"] = { "schattena%*" }
   
   L["The Nexus"] = "Der Nexus"
   L["NEX-Tokens"] = {}
@@ -231,7 +231,7 @@ if (L) then
 	--L["UP-AntiTokens"] = { "burg" }
 
   L["Halls of Lightning"] = "Hallen der Blitze"
-  L["HOL-Tokens"] = { "hdb", "hall.*blitz%a*" }
+  L["HOL-Tokens"] = { "hdb", "hall.*blitz%a*", "blitze" }
 
   L["Oculus"] = "Der Oculus"
   L["OCU-Tokens"] = {}
@@ -260,7 +260,7 @@ if (L) then
   -- L["NAXX-Tokens"] = { }
 
   L["Malygos"] = "Malygos"
-  L["MALY-Tokens"] = {}
+  L["MALY-Tokens"] = { "auge", "aug.*ewig?keit" }
 
   L["Obsidian Sanctum"] = "Das Obsidiansanktum"
   L["OBSI-Tokens"] = {}
@@ -274,6 +274,11 @@ if (L) then
 	------------------------------------------------------------------------------------------------
 	
 	L["Custom"] = "Benutzerdefiniert"
+
+	L["GuildTags"] = {
+		"gilde",
+		"rekru%a*",
+	}
 
 	L["RoleKeywords"] = {
 		"dd",
@@ -292,6 +297,8 @@ if (L) then
 
 	L["NoDungeons"] = {
 		"kaufe",
+		"rekru.*",
+		"raidzeit%a*",
 		"verkaufe",
 		"stä.*", -- umlaute sorgen dafür, dass "st" (sunken temple) erkannt wird, das müssen wir ausschließen
 		"stö.*",

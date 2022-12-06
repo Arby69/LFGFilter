@@ -24,10 +24,11 @@ function LFGFilter:ParseMessage(message)
 				local ishero = LFGFilter.MessageHasToken(lowerMessage, self.HeroTags)
 				local dungeons, matchLevel, ishero = self:GetMatchingDungeons(lowerMessage, ishero)
 				local isQuest = LFGFilter.IsQuest(message)
+				local hasGuild = LFGFilter.MessageHasToken(lowerMessage, self.GuildTags)
 				if isQuest then
 					matchLevel = 3
 				else
-					if #dungeons == 0 and (hasLfm or hasRole or hasLfg) then
+					if #dungeons == 0 and (hasLfm or hasRole or hasLfg) and (hasGuild == false) then
 						table.insert(dungeons, "Custom")
 						matchLevel = 3
 					end
@@ -63,9 +64,10 @@ function LFGFilter:DefineTokens()
 	self.LfgTags = self.CreateTokenTable({ "lfg", "group", "grp" }, self.Locale["LFGKeywords"] or {})
 	self.RoleTags = self.CreateTokenTable({ "tank", "heal", "healer", "dps", "damage" }, self.Locale["RoleKeywords"] or {})
 	self.StopWords = self.CreateTokenTable({ "grp full", "thanks full", "ty full", "full ty", "full thanks", "http" }, self.Locale["StopWords"] or {})
-	self.NoDungeons = self.CreateTokenTable({ "wts", "wtb", "buy", "sell", "selling" }, self.Locale["NoDungeons"] or {})
+	self.NoDungeons = self.CreateTokenTable({ "wts", "wtb", "buy", "sell", "selling", "recru.*" }, self.Locale["NoDungeons"] or {})
 	self.HeroTags = self.CreateTokenTable({ "hcs?", "heroic", "hero" }, self.Locale["HeroTags"] or {})
 	self.NonHeroTags = self.CreateTokenTable({ "nhc", "non%Whc" }, self.Locale["NonHeroTags"] or {})
+	self.GuildTags = self.CreateTokenTable({ "guild", "recru.*" }, self.Locale["GuildTags"] or {})
 end
 
 function LFGFilter.IsQuest(message)

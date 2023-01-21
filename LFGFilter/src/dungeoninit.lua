@@ -105,7 +105,7 @@ function LFGFilter:DefineDungeons()
 	--self:DefineWotlkDungeon("Halls of Reflection", "Icecrown", 79, 80, 80, 80, { "hor", "reflec[tion]*" })
 
 	-- function LFGFilter:DefineWotlkRaid(name, location, tokens, antitokens)
-	self:DefineWotlkRaid("Naxxramas", "Dragonblight", { "naxx", "nax+%a*", "k?e?l?%W?thuzad", "im+orta?l", "und[yi]+ng" })
+	self:DefineWotlkRaid("Naxxramas", "Dragonblight", { "naxx", "nax+%a*", "k?e?l?%W?thuzad", "im+orta?l", "und[yi]+ng", "skip%a*run" })
 	self:DefineWotlkRaid("Malygos", "Borean Tundra", { "maly", "mal+y[gos]*", "eye%Wof%Weter[nity]+", "eoe" })
 	self:DefineWotlkRaid("Obsidian Sanctum", "Dragonblight", { "obsi", "os", "sanctum", "obsi%dd?", "obsi.%d", "obsi10s+", "obsi25s+", "sar?t[harion]*" }, { "ms", "ruby" })
 	self:DefineWotlkRaid("Vault of Archavon", "Wintergrasp", { "voa", "archa[vons]*" })

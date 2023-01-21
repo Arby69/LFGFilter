@@ -215,7 +215,7 @@ if (L) then
 	L["DT-AntiTokens"] = { "vio%a*" } -- welcher Idiot schreibt "Violette Feste"? seufz...
 
   L["Violet Hold"] = "Violette Festung"
-  L["VH-Tokens"] = { "viol*.fest%a*" }
+  L["VH-Tokens"] = { "viol*.fest%a*", "vf" }
 
   L["Gundrak"] = "Gundrak"
   L["GD-Tokens"] = {}

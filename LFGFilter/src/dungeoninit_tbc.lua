@@ -46,7 +46,7 @@ function LFGFilter:DefineDungeons()
 	self:DefineClassicRaid("Zul Gurub", 20, "Stranglethorn Vale", 60, 60, { "zg", "gurub", "zul%W?gurub" })
 	self:DefineClassicRaid("Ruins of Ahn'Qiraj", 20, "Silithus", 60, 60, { "aq20", "aq.20", "ruins.*qiraj", "aq.*ruins", "ossirian" })
 	self:DefineClassicRaid("Ahn'Qiraj Temple", 40, "Silithus", 60, 60, { "aq40", "aq.40", "temple.*qiraj", ".*qiraj.*temple", "aq.*temple", "c%W?thun" }, { "bl%a*", "bt" })
-	--self:DefineClassicRaid("Naxxramas", 40, "Eastern Plaguelands", 60, 60, { "naxx", "naxx%a*", "k?e?l?%W?thuzad" }) -- removed/updated in WotLK
+	self:DefineClassicRaid("Naxxramas", 40, "Eastern Plaguelands", 60, 60, { "naxx", "naxx%a*", "k?e?l?%W?thuzad" }) -- removed/updated in WotLK
 
 	-------------------------------------------------------------------------------------------------------------------
 	-- Burning Crusade (TBC)
@@ -81,42 +81,7 @@ function LFGFilter:DefineDungeons()
 	self:DefineBCRaid("Black Temple", 25, "Shadowmoon Valley", { "bt", "illidan", "bl.*temple" }, { "aq.*", ".*qiraj" })
 	self:DefineBCRaid("Sunwell Plateau", 25, "Sunstrider Isle", { "sun", "sunw%a*", "plateau" })
 
-	-------------------------------------------------------------------------------------------------------------------
-	-- Wrath of the Lich King (WOTLK)
-	-------------------------------------------------------------------------------------------------------------------
-	
-	-- function LFGFilter:DefineWotlkDungeon(name, location, minlevel, yellow, green, maxlevel, tokens, antitokens, possible achievements)
-	-- Achievements are Sub Arrays with "achvmnt id",mode - where mode = 1 for normal, 2 for hc, 3 for hc+
-	self:DefineWotlkDungeon("Utgarde Keep", "Howling Fjord", 68, 70, 72, 75, { "uk", "u.*keep", "utgar[de]*%W[kep]+" }, { "shadow%a", "pinn%a*" }, { {477,1}, {489,2}, {1919,2}, {17213,3} })
-	self:DefineWotlkDungeon("The Nexus", "Borean Tundra", 70, 71, 73, 75, { "nex", "nexus", "nex%a*" }, {}, { {478,1}, {2037,2}, {490,2}, {2036,2}, {17283,3} })
-	self:DefineWotlkDungeon("Azjol-Nerub", "Dragonblight", 70, 72, 75, 77, { "azj", "azjo?l", "nerub" }, {}, { {480,1}, {491,2}, {1297,2}, {1860,2}, {1296,2}, {17285,3} })
-	self:DefineWotlkDungeon("Ahn'kahet: The Old Kingdom", "Dragonblight", 71, 73, 76, 78, { "ahnk", "tok", "ah%a*.?kah%a*", "old%Wkingd%a*", "ah?nkah?et" }, {}, { {481,1}, {492,2}, {2038,2}, {1862,2}, {2056,2}, {17291,3} })
-	self:DefineWotlkDungeon("Drak'Tharon Keep", "Grizzly Hills", 72, 74, 76, 78, { "dt", "%a*k%W*tharon", "drak%W*th%a*" }, {}, { {482,1}, {493,2}, {2039,2}, {2057,2}, {2151,2}, {17292,3} })
-	self:DefineWotlkDungeon("Violet Hold", "Dalaran", 73, 75, 77, 79, { "vh", "vio%a*", "v%a*%W*hold" }, {}, { {483,1}, {494,2}, {1865,2}, {1816,2}, {2041,2}, {2153,2}, {17293,3} })
-	self:DefineWotlkDungeon("Gundrak", "", 75, 76, 78, 80, { "gd", "g%a*drak", "gun%Wdrak" }, {}, { {484,1}, {495,2}, {1864,2}, {2040,2}, {2152,2}, {2058,2}, {17295,3} })
-	self:DefineWotlkDungeon("Halls of Stone", "The Storm Peaks", 76, 77, 79, 80, { "hos", "hall%a*stone" }, { "seth%a*", "shatt%a*", "light%a*" }, { {485,1}, {496,2}, {2154,2}, {2155,2}, {1866,2}, {17297,3} })
-	self:DefineWotlkDungeon("Halls of Lightning", "The Storm Peaks", 78, 79, 80, 80, { "hol", "lightn[ing]*", "loken" }, { "seth%a*", "shatt%a*", "ston%a*" }, { {486,1}, {497,2}, {1834,2}, {1867,2}, {2042,2}, {17299,3} })
-	self:DefineWotlkDungeon("Utgarde Pinnacle", "Howling Fjord", 78, 79, 80, 80, { "up", "pin+ac[le]*", "ymiron", "utgar[de]*%Wpin+[acle]*" }, { "keep" }, { {488,1}, {499,2}, {2157,2}, {1873,2}, {2156,2}, {2043,2}, {17301,3} })
-	self:DefineWotlkDungeon("Oculus", "Borean Tundra", 78, 79, 80, 80, { "oculus", "oc+o?[lus]*" }, {}, { {487,1}, {498,2}, {2046,2}, {1871,2}, {1868,2}, {2044,2}, {2045,2}, {17300,3} })
-	self:DefineWotlkDungeon("Culling of Stratholme", "Tanaris", 78, 79, 80, 80, { "cos", "culling", "cot.*4", "strat", "strath%a*", "starth%a*", "straht%a*", "%a*ganis" }, { "baron" }, { {479,1}, {500,2}, {1817,2}, {1872,2}, {17302,3} })
-	--self:DefineWotlkDungeon("Trial of the Champion", "Icecrown", 78, 79, 80, 80, { "toc", "trial", "trail" })
-	--self:DefineWotlkDungeon("Pit of Saron", "Icecrown", 79, 80, 80, 80, { "pos", "pit+", "saron" })
-	--self:DefineWotlkDungeon("Forge of Souls", "Icecrown", 79, 80, 80, 80, { "fos", "forge", "souls" })
-	--self:DefineWotlkDungeon("Halls of Reflection", "Icecrown", 79, 80, 80, 80, { "hor", "reflec[tion]*" })
-
-	-- function LFGFilter:DefineWotlkRaid(name, location, tokens, antitokens)
-	self:DefineWotlkRaid("Naxxramas", "Dragonblight", { "naxx", "nax+%a*", "k?e?l?%W?thuzad", "im+orta?l", "und[yi]+ng" })
-	self:DefineWotlkRaid("Malygos", "Borean Tundra", { "maly", "mal+y[gos]*", "eye%Wof%Weter[nity]+", "eoe" })
-	self:DefineWotlkRaid("Obsidian Sanctum", "Dragonblight", { "obsi", "os", "sanctum", "obsi%dd?", "obsi.%d", "sar?t[harion]*" }, { "ms", "ruby" })
-	self:DefineWotlkRaid("Vault of Archavon", "Wintergrasp", { "voa", "archa[vons]*" })
-	self:DefineWotlkRaid("Ulduar", "The Storm Peaks", { "ulduar", "yogg.*" })
-	--self:DefineWotlkRaid("Trial of the Crusader", "Icecrown", { })
-	--self:DefineWotlkRaid("Icecrown Citadel", "Icecrown", { "icc" })
-	--self:DefineWotlkRaid("Ruby Sanctum", "Dragonblight", { "ruby" })
-	--self:DefineWotlkRaid("Onyxia's Lair", "Dustwallow Marsh", { "ony", "onyxia" }, { "pre" }) -- not yet active
-
-	self:DefineWotlkDungeon("World Tour", "Northrend", 80, 80, 80, 80, { "tour", "worldtour" })
-	self:DefineWotlkDungeon("Daily", "", 80, 80, 80, 80, { "daily", "dayl[iey]+" })
-	self:DefineWotlkDungeon("PvP", "", 80, 80, 80, 80, { "pvp", "2vs?2", "3vs?3", "5vs?5", "2on?2", "3on?3", "5on?5", "2s", "3s", "5s" })
+	-- PvP
+	self:DefineBCDungeon("PvP", "", 80, 80, 80, 80, { "pvp", "2vs?2", "3vs?3", "5vs?5", "2on?2", "3on?3", "5on?5", "2s", "3s", "5s" })
 
 end

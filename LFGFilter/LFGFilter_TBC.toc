@@ -1,4 +1,4 @@
-## Interface: 30401
+## Interface: 20504
 ## Title: LFGFilter
 ## Author: Arby
 ## Version: 1.4.0
@@ -7,4 +7,8 @@ libs.xml
 Locales\locales.xml
 main.lua
 config.lua
-src\src.xml
+src\dungeoninit_tbc.lua
+src\dungeons.lua
+src\parser.lua
+src\strings.lua
+src\util.lua

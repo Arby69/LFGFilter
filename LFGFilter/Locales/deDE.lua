@@ -268,17 +268,15 @@ if (L) then
   L["Vault of Archavon"] = "Archavons Kammer"
   L["VOA-Tokens"] = { "ak", "arch%a*von.*kammer" }
 
+  L["Ulduar"] = "Ulduar"
+  L["ULDUAR-Tokens"] = {}
+
   --L[""] = ""
   --L["-Tokens"] = {}
 
 	------------------------------------------------------------------------------------------------
 	
 	L["Custom"] = "Benutzerdefiniert"
-
-	L["GuildTags"] = {
-		"gilde",
-		"rekru%a*",
-	}
 
 	L["RoleKeywords"] = {
 		"dd",
@@ -300,14 +298,15 @@ if (L) then
 		"rekru.*",
 		"raidzeit%a*",
 		"verkaufe",
-		"stä.*", -- umlaute sorgen dafür, dass "st" (sunken temple) erkannt wird, das müssen wir ausschließen
-		"stö.*",
-		"stü.*",
+		"gilde",
+		"tausche",
 	}
 
 	L["HeroTags"] = {
 		"heroisch",
 	}
+	
+	L["HeroPlusTags"] = {}
 	
 	L["NonHeroTags"] = {}
 

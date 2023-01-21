@@ -32,9 +32,7 @@ function LFGFilter:OnInitialize()
 	self.Colors[5] = RED
 	self.Dungeons = { }
 	self:DefineTokens()
-	self:DefineClassicDungeons()
-	self:DefineBCCDungeons()
-	self:DefineWotLKDungeons()
+	self:DefineDungeons()
 	self:DefineDungeon("", "Custom")
 	self.Groups = { }
 end

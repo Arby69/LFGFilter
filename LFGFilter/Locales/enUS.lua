@@ -260,6 +260,9 @@ if L then
     L["Vault of Archavon"] = "Vault of Archavon"
     L["VOA-Tokens"] = {}
 
+    L["Ulduar"] = "Ulduar"
+    L["ULDUAR-Tokens"] = {}
+
     --L[""] = ""
     --L["-Tokens"] = {}
 
@@ -271,5 +274,8 @@ if L then
     L["LFGKeywords"] = { }
     L["NoDungeons"] = { }
     L["StopWords"] = { }
+    L["HeroTags"] = { }
+	  L["HeroPlusTags"] = { }
+	  L["NonHeroTags"] = { }
 
 end

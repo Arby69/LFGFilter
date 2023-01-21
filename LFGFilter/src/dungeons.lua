@@ -132,7 +132,9 @@ end
 local function IsAchievementMatch(line, dungeon)
 	for _, avm in pairs(dungeon.Achievements or {}) do
 		if (string.find(line, "|hachievement:0*" .. avm[1] .. ":.*|h")) then
-			return avm[1], (avm[2] == 2)
+			local ishcplus = (avm[2] == 3)
+			local ishero = ishcplus or (avm[2] == 2)
+			return avm[1], ishero, ishcplus
 		end
 	end
 	return 0, false
@@ -162,7 +164,7 @@ function RemoveDungeonFromTable(dungeons, key)
 	end
 end
 
-function LFGFilter:GetMatchingDungeons(pmessage, ishero)
+function LFGFilter:GetMatchingDungeons(pmessage, ishero, ishcplus)
 	local result = { }
 	local matchLevel = 0
 	local DMKey = nil
@@ -173,11 +175,12 @@ function LFGFilter:GetMatchingDungeons(pmessage, ishero)
 		if (isQuest == false) then
 			for key, dungeon in pairs(self.Dungeons) do
 				local isMatch = false
-				local avm, hc = IsAchievementMatch(message, dungeon)
+				local avm, hc, hcp = IsAchievementMatch(message, dungeon)
 				if (avm > 0) then 
 					isMatch = true
 					message = message:gsub("|hachievement:0*" .. avm .. ".*|h%[.*%]|h", "")
-					if hc then ishero = true end
+					if hc or hcp then ishero = true end
+					if hcp then ishcplus = true end
 				else
 					isMatch = IsDungeonMatch(message, dungeon)
 				end
@@ -210,5 +213,5 @@ function LFGFilter:GetMatchingDungeons(pmessage, ishero)
 			matchLevel = 3
 		end
 	end
-	return result, matchLevel, ishero
+	return result, matchLevel, ishero, ishcplus
 end

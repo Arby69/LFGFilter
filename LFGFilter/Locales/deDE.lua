@@ -263,7 +263,7 @@ if (L) then
   L["MALY-Tokens"] = { "auge", "aug.*ewig?keit" }
 
   L["Obsidian Sanctum"] = "Das Obsidiansanktum"
-  L["OBSI-Tokens"] = {}
+  L["OBSI-Tokens"] = { "obsi10[er]*", "obsi25[er]*" }
 
   L["Vault of Archavon"] = "Archavons Kammer"
   L["VOA-Tokens"] = { "ak", "arch%a*von.*kammer" }

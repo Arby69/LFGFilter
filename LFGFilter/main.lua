@@ -50,7 +50,7 @@ local function filterFunc(self, event, arg1, ...)
 	if (lastMessage == arg1 and lastMsgId ~= arg11) then return true end -- identical message as before but new msgId? -> chat spam, filter it
 	lastMessage = arg1
 	lastMsgId = arg11
-	local found, hasLfm, hasLfg, dungeons, matchLevel, ishero = LFGFilter:ParseMessage(arg1)
+	local found, hasLfm, hasLfg, dungeons, matchLevel, ishero, ishcplus = LFGFilter:ParseMessage(arg1)
 	if (found) then
 		if (dungeons and #dungeons > 0) then
 			local playerId = arg12
@@ -96,9 +96,15 @@ local function filterFunc(self, event, arg1, ...)
 			end
 		end
 		hcTag = ""
-		if ishero then
+		if ishcplus then
+		  if addColor then
+				hcTag = "|cffff2020[HC+]|r"
+			else
+				hcTag = "[HC+]"
+			end
+		elseif ishero then
 			if addColor then
-				hcTag = "|cffff2020[HC]|r"
+				hcTag = "|cffff6020[HC]|r"
 			else
 				hcTag = "[HC]"
 			end

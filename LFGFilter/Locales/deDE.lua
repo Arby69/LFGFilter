@@ -218,7 +218,7 @@ if (L) then
   L["VH-Tokens"] = { "viol*.fest%a*", "vf" }
 
   L["Gundrak"] = "Gundrak"
-  L["GD-Tokens"] = {}
+  L["GD-Tokens"] = { }
 
   L["Halls of Stone"] = "Hallen des Steins"
   L["HOS-Tokens"] = { "hds", "hall.*stein%a*" }

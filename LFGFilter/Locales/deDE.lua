@@ -277,6 +277,16 @@ if (L) then
 
 	------------------------------------------------------------------------------------------------
 	
+	-- Arenas
+
+	L["Nagrand Arena"] = "Nagrand Arena"
+	L["NAGRANDARENA-Tokens"] = {}
+
+	L["Zul'Drak Arena"] = "Zul'Drak Arena"
+	L["ZULDRAKARENA-Tokens"] = {}
+
+	------------------------------------------------------------------------------------------------
+
 	L["Custom"] = "Benutzerdefiniert"
 
 	L["RoleKeywords"] = {

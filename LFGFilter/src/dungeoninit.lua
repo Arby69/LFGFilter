@@ -81,6 +81,9 @@ function LFGFilter:DefineDungeons()
 	self:DefineBCRaid("Black Temple", 25, "Shadowmoon Valley", { "bt", "illidan", "bl.*temple" }, { "aq.*", ".*qiraj" })
 	self:DefineBCRaid("Sunwell Plateau", 25, "Sunstrider Isle", { "sun", "sunw%a*", "plateau" })
 
+		-- Arena
+	self:DefineBCDungeon("Nagrand Arena", "Nagrand", 66, 66, 70, 72, { "nagrandarena", "nagr.*arena", "arena.*nagr%a*" })
+
 	-------------------------------------------------------------------------------------------------------------------
 	-- Wrath of the Lich King (WOTLK)
 	-------------------------------------------------------------------------------------------------------------------
@@ -117,6 +120,11 @@ function LFGFilter:DefineDungeons()
 
 	self:DefineWotlkDungeon("World Tour", "Northrend", 80, 80, 80, 80, { "tour", "worldtour" })
 	self:DefineWotlkDungeon("Daily", "", 80, 80, 80, 80, { "daily", "dayl[iey]+", "dail[iey]+" })
+	
+	-- Arena
+	self:DefineWotlkDungeon("Zul'Drak Arena", "Zul'Drak", 76, 76, 80, 82, { "zuldrakarena", "zul.*arena", "arena.*zula*" })
+
+	-- PvP
 	self:DefineWotlkDungeon("PvP", "", 80, 80, 80, 80, { "pvp", "2vs?2", "3vs?3", "5vs?5", "2on?2", "3on?3", "5on?5", "2s", "3s", "5s" })
 
 end

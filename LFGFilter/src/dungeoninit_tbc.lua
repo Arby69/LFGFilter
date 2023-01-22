@@ -84,4 +84,7 @@ function LFGFilter:DefineDungeons()
 	-- PvP
 	self:DefineBCDungeon("PvP", "", 80, 80, 80, 80, { "pvp", "2vs?2", "3vs?3", "5vs?5", "2on?2", "3on?3", "5on?5", "2s", "3s", "5s" })
 
+	-- Arena
+	self:DefineBCDungeon("Nagrand Arena", "Nagrand", 66, 66, 70, 72, { "nagrandarena", "nagr.*arena", "arena.*nagr%a*" })
+
 end

@@ -300,6 +300,7 @@ if (L) then
 		"verkaufe",
 		"gilde",
 		"tausche",
+		"rezept%a*",
 	}
 
 	L["HeroTags"] = {

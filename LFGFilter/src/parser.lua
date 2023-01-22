@@ -64,10 +64,10 @@ function LFGFilter:DefineTokens()
 	self.LfgTags = self.CreateTokenTable({ "lfg", "group", "grp" }, self.Locale["LFGKeywords"] or {})
 	self.RoleTags = self.CreateTokenTable({ "tank", "heal", "healer", "dps", "damage" }, self.Locale["RoleKeywords"] or {})
 	self.StopWords = self.CreateTokenTable({ "grp full", "thanks full", "ty full", "full ty", "full thanks", "http", "layer", "trade.*gold" }, self.Locale["StopWords"] or {})
-	self.NoDungeons = self.CreateTokenTable({ "wts", "wtb", "buy", "sell", "selling", "recru.*", "guild", "ambition.*", "trade" }, self.Locale["NoDungeons"] or {})
+	self.NoDungeons = self.CreateTokenTable({ "wts", "wtb", "buy", "sell", "selling", "recru.*", "guild", "ambition.*", "trade", "recip%a*" }, self.Locale["NoDungeons"] or {})
 	self.HeroTags = self.CreateTokenTable({ "hcs?", "heroic", "hero" }, self.Locale["HeroTags"] or {})
 	self.NonHeroTags = self.CreateTokenTable({ "nhc", "non%Whc" }, self.Locale["NonHeroTags"] or {})
-	self.HeroPlusTags = self.CreateTokenTable({ "hc%s*%+", "hc%s*plus", "hcp" }, self.Locale["HeroPlusTags"] or {})
+	self.HeroPlusTags = self.CreateTokenTable({ "hc%s*%+", "hc%s*plus", "hcp", "h%+" }, self.Locale["HeroPlusTags"] or {})
 end
 
 function LFGFilter.IsQuest(message)

@@ -116,7 +116,7 @@ function LFGFilter:DefineDungeons()
 	--self:DefineWotlkRaid("Onyxia's Lair", "Dustwallow Marsh", { "ony", "onyxia" }, { "pre" }) -- not yet active
 
 	self:DefineWotlkDungeon("World Tour", "Northrend", 80, 80, 80, 80, { "tour", "worldtour" })
-	self:DefineWotlkDungeon("Daily", "", 80, 80, 80, 80, { "daily", "dayl[iey]+" })
+	self:DefineWotlkDungeon("Daily", "", 80, 80, 80, 80, { "daily", "dayl[iey]+", "dail[iey]+" })
 	self:DefineWotlkDungeon("PvP", "", 80, 80, 80, 80, { "pvp", "2vs?2", "3vs?3", "5vs?5", "2on?2", "3on?3", "5on?5", "2s", "3s", "5s" })
 
 end

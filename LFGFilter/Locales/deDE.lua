@@ -175,6 +175,7 @@ if (L) then
 
 	L["Magtheridon's Lair"] = "Magtheridons Kammer"
 	L["MAG-Tokens"] = { "magt%a*" }
+	L["MAG-AntiTokens"] = { "mag" } -- german word often used in chat, but not for Magtheridon
 
 	L["Serpentshrine Cavern"] = "Höhle des Schlangenschreins"
 	L["SSC-Tokens"] = { "schlangenschrein", "schlang%a*", "vashj", "hoehl.*%Wd.*schlangensc%a*" }

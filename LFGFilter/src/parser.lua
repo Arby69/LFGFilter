@@ -67,7 +67,7 @@ function LFGFilter:DefineTokens()
 	self.NoDungeons = self.CreateTokenTable({ "wts", "wtb", "buy", "sell", "selling", "recru.*", "guild", "ambition.*", "trade", "recip%a*" }, self.Locale["NoDungeons"] or {})
 	self.HeroTags = self.CreateTokenTable({ "hcs?", "heroic", "hero" }, self.Locale["HeroTags"] or {})
 	self.NonHeroTags = self.CreateTokenTable({ "nhc", "non%Whc" }, self.Locale["NonHeroTags"] or {})
-	self.HeroPlusTags = self.CreateTokenTable({ "hc%s*%+", "hc%s*plus", "hcp", "h%+" }, self.Locale["HeroPlusTags"] or {})
+	self.HeroPlusTags = self.CreateTokenTable({ "hc%s*%+", "hc%s*plus", "hcp", "h%s*%+" }, self.Locale["HeroPlusTags"] or {})
 end
 
 function LFGFilter.IsQuest(message)

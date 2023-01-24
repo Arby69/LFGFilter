@@ -158,7 +158,7 @@ end
 function RemoveDungeonFromTable(dungeons, key)
 	for i, n in pairs(dungeons) do
 		if (n == key) then
-			table.remove(i)
+			table.remove(dungeons, i)
 			return
 		end
 	end

@@ -267,7 +267,7 @@ if (L) then
   L["OBSI-Tokens"] = { "obsi10[er]*", "obsi25[er]*" }
 
   L["Vault of Archavon"] = "Archavons Kammer"
-  L["VOA-Tokens"] = { "ak", "arch%a*von.*kammer" }
+  L["VOA-Tokens"] = { "ak", "arch%a*von.*kammer", "spec+%A*[run]*" }
 
   L["Ulduar"] = "Ulduar"
   L["ULDUAR-Tokens"] = {}

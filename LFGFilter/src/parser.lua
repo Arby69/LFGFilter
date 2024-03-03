@@ -11,6 +11,7 @@ function LFGFilter.ReplaceUmlauts(message)
 end
 
 function LFGFilter:ParseMessage(message)
+	local hclvl = -1
 	local lowerMessage = " " .. LFGFilter.ReplaceUmlauts(string.lower(message)) .. " "
 	local isTrade = LFGFilter.MessageHasToken(lowerMessage, self.NoDungeons) -- LFGFilter.ArrayContainsArrayValue(lowerWords, WtbTags)
 	if (isTrade == false) then
@@ -21,9 +22,17 @@ function LFGFilter:ParseMessage(message)
 				local hasRole = LFGFilter.MessageHasToken(lowerMessage, self.RoleTags)
 				local hasLfg = LFGFilter.MessageHasToken(lowerMessage, self.LfgTags) 
 				local hasLfm = LFGFilter.MessageHasToken(lowerMessage, self.LfmTags) 
-				local ishero = LFGFilter.MessageHasToken(lowerMessage, self.HeroTags)
-				local ishcplus = ishero and LFGFilter.MessageHasToken(lowerMessage, self.HeroPlusTags)
-				local dungeons, matchLevel, ishero, ishcplus = self:GetMatchingDungeons(lowerMessage, ishero, ishcplus)
+				local ispvp = LFGFilter.MessageHasToken(lowerMessage, self.PvpTags)
+				if (LFGFilter.MessageHasToken(lowerMessage, self.HeroGammaTags)) then
+					hclvl = 3
+				elseif (LFGFilter.MessageHasToken(lowerMessage, self.HeroBetaTags)) then
+					hclvl = 2
+				elseif (LFGFilter.MessageHasToken(lowerMessage, self.HeroPlusTags)) then
+					hclvl = 1
+				elseif (LFGFilter.MessageHasToken(lowerMessage, self.HeroTags)) then
+					hclvl = 0
+				end
+				local dungeons, matchLevel, hclvl = self:GetMatchingDungeons(lowerMessage, hclvl)
 				local isQuest = LFGFilter.IsQuest(message)
 				if isQuest then
 					matchLevel = 3
@@ -33,10 +42,10 @@ function LFGFilter:ParseMessage(message)
 						matchLevel = 3
 					end
 				end
-				if (#dungeons > 0 or isQuest) then
+				if (#dungeons > 0 or isQuest or ispvp) then
 					--local entry = LFGChatScannerGroupEntry(sender, message, channel, dungeons)
 					--LFGChatScanner.EventBus:PublishEvent(LFGChatScanner.Config.Events.ChatAnnouncementFound, entry)
-					return true, hasLfm, hasLfg, dungeons, matchLevel, ishero, ishcplus
+					return true, hasLfm, hasLfg, dungeons, matchLevel, hclvl, ispvp
 				end
 			else
 				-- TODO: look up group table and remove group from it if present
@@ -48,10 +57,12 @@ end
 
 function LFGFilter.CreateTokenTable(t1, t2)
 	local result = { }
-	if (type(t1) == "table" and type(t2) == "table") then
+	if type(t1) == "table" then
 		for _, v in pairs(t1) do
 			table.insert(result, "%W" .. tostring(v) .. "%W")
 		end
+	end
+	if type(t2) == "table" then
 		for _, v in pairs(t2) do
 			table.insert(result, "%W" .. tostring(v) .. "%W")
 		end
@@ -60,14 +71,21 @@ function LFGFilter.CreateTokenTable(t1, t2)
 end
 
 function LFGFilter:DefineTokens()
-	self.LfmTags = self.CreateTokenTable({ "lfm", "lf3m", "lf2m", "lf1m", "need", "lf", "looking for more" }, self.Locale["LFMKeywords"] or {})
+	self.LfmTags = self.CreateTokenTable({ "lfm", "lf3m", "lf2m", "lf1m", "need", "looking for more" }, self.Locale["LFMKeywords"] or {})
 	self.LfgTags = self.CreateTokenTable({ "lfg", "group", "grp" }, self.Locale["LFGKeywords"] or {})
 	self.RoleTags = self.CreateTokenTable({ "tank", "heal", "healer", "dps", "damage" }, self.Locale["RoleKeywords"] or {})
 	self.StopWords = self.CreateTokenTable({ "grp full", "thanks full", "ty full", "full ty", "full thanks", "http", "layer", "trade.*gold" }, self.Locale["StopWords"] or {})
 	self.NoDungeons = self.CreateTokenTable({ "wts", "wtb", "buy", "sell", "selling", "recru.*", "guild", "ambition.*", "trade", "recip%a*" }, self.Locale["NoDungeons"] or {})
-	self.HeroTags = self.CreateTokenTable({ "hcs?", "heroic", "hero" }, self.Locale["HeroTags"] or {})
-	self.NonHeroTags = self.CreateTokenTable({ "nhc", "non%Whc" }, self.Locale["NonHeroTags"] or {})
-	self.HeroPlusTags = self.CreateTokenTable({ "hc%s*%+", "hc%s*plus", "hcp", "h%s*%+" }, self.Locale["HeroPlusTags"] or {})
+	self.PvpTags = self.CreateTokenTable({ "pvp", "2vs?2", "3vs?3", "5vs?5", "2on?2", "3on?3", "5on?5", "2s", "3s", "5s" }, self.Locale["PvP"] or {})
+	if not LFGFilter.IsClassic then
+		self.HeroTags = self.CreateTokenTable({ "hcs?", "heroic", "hero", "togc", "beta", "alpha" }, self.Locale["HeroTags"] or {})
+		self.NonHeroTags = self.CreateTokenTable({ "nhc", "non%Whc" }, self.Locale["NonHeroTags"] or {})
+		if LFGFilter.IsWOTLK then
+			self.HeroPlusTags = self.CreateTokenTable({ "alpha", "hc%s*%+", "hc%s*plus", "hcp", "h%s*%+", "hca" }, self.Locale["HeroPlusTags"] or {})
+			self.HeroBetaTags = self.CreateTokenTable({ "beta", "hc%s*%+%+", "h%s*%+%+", "%s*%+%+", "hcb" }, self.Locale["HeroBetaTags"] or {})
+			self.HeroGammaTags = self.CreateTokenTable({ "gamma", "h%s*%+%+%+", "%s*%+%+%+", "hcg" }, self.Locale["HeroGammaTags"] or {})
+		end
+	end
 end
 
 function LFGFilter.IsQuest(message)

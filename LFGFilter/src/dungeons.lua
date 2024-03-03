@@ -79,27 +79,18 @@ function LFGFilter:DefineDungeon(addon, name, size, location, faction, minlevel,
 	self.Dungeons[name] = dungeon
 end
 
-function LFGFilter:GetDifficultyColor(dungeonname, ishero)
-	return self.Colors[self:GetDifficulty(dungeonname, ishero)]
+function LFGFilter:GetDifficultyColor(dungeonname, hclvl)
+	return self.Colors[self:GetDifficulty(dungeonname, hclvl)]
 end
 
-function LFGFilter:GetDifficulty(dungeon, ishero)
+function LFGFilter:GetDifficulty(dungeon, hclvl)
 	if (type(dungeon) == "string") then
 		dungeon = self.Dungeons[dungeon]
 	end
 	if (type(dungeon) == "table") then
 		local level = UnitLevel("player")
-		if ishero then
-			if (level < dungeon.HeroLevel) then
-				return 5
-			elseif (level > dungeon.HeroLevel+3) then
-				return 1
-			elseif (level > dungeon.HeroLevel) then
-				return 2
-			else
-				return 3
-			end
-		else
+		if hclvl < 0 then
+			-- normal
 			if (level < dungeon.MinLevel) then
 				return 5
 			elseif (level < dungeon.YellowLevel) then
@@ -107,6 +98,17 @@ function LFGFilter:GetDifficulty(dungeon, ishero)
 			elseif (level > dungeon.MaxLevel) then
 				return 1
 			elseif (level > dungeon.GreenLevel) then
+				return 2
+			else
+				return 3
+			end
+		else
+			-- heroic
+			if (level < dungeon.HeroLevel) then
+				return 5
+			elseif (level > dungeon.HeroLevel+3) then
+				return 1
+			elseif (level > dungeon.HeroLevel) then
 				return 2
 			else
 				return 3
@@ -128,16 +130,17 @@ end
 --      return tostring(o)
 --   end
 --end
---
-local function IsAchievementMatch(line, dungeon)
+
+local function IsAchievementMatch(line, dungeon, hclvl)
 	for _, avm in pairs(dungeon.Achievements or {}) do
 		if (string.find(line, "|hachievement:0*" .. avm[1] .. ":.*|h")) then
-			local ishcplus = (avm[2] == 3)
-			local ishero = ishcplus or (avm[2] == 2)
-			return avm[1], ishero, ishcplus
+			if avm[2] > 1 then
+				hclvl = avm[2] - 2
+			end
+			return avm[1], hclvl
 		end
 	end
-	return 0, false
+	return 0, hclvl
 end
 
 local function IsDungeonMatch(line, dungeon)
@@ -164,7 +167,7 @@ function RemoveDungeonFromTable(dungeons, key)
 	end
 end
 
-function LFGFilter:GetMatchingDungeons(pmessage, ishero, ishcplus)
+function LFGFilter:GetMatchingDungeons(pmessage, hclvl)
 	local result = { }
 	local matchLevel = 0
 	local DMKey = nil
@@ -175,18 +178,16 @@ function LFGFilter:GetMatchingDungeons(pmessage, ishero, ishcplus)
 		if (isQuest == false) then
 			for key, dungeon in pairs(self.Dungeons) do
 				local isMatch = false
-				local avm, hc, hcp = IsAchievementMatch(message, dungeon)
+				local avm, hclvl = IsAchievementMatch(message, dungeon, hclvl)
 				if (avm > 0) then 
 					isMatch = true
 					message = message:gsub("|hachievement:0*" .. avm .. ".*|h%[.*%]|h", "")
-					if hc or hcp then ishero = true end
-					if hcp then ishcplus = true end
 				else
 					isMatch = IsDungeonMatch(message, dungeon)
 				end
 				if (isMatch) then
 					table.insert(result, key)
-					local diff = self:GetDifficulty(dungeon, ishero)
+					local diff = self:GetDifficulty(dungeon, hclvl)
 					local dOffset = 3 - abs(3-diff)
 					if (dOffset > matchLevel) then
 						matchLevel = dOffset
@@ -203,7 +204,7 @@ function LFGFilter:GetMatchingDungeons(pmessage, ishero, ishcplus)
 				--result[DMKey] = dungeon -- doesn't seem to work, check why!
 				RemoveDungeonFromTable(result, DMKey)
 				table.insert(result, dungeon.Name)
-				local diff = self:GetDifficulty(dungeon, ishero)
+				local diff = self:GetDifficulty(dungeon, hclvl)
 				local dOffset = 3 - abs(3-diff)
 				if (dOffset > matchLevel) then
 					matchLevel = dOffset
@@ -213,5 +214,5 @@ function LFGFilter:GetMatchingDungeons(pmessage, ishero, ishcplus)
 			matchLevel = 3
 		end
 	end
-	return result, matchLevel, ishero, ishcplus
+	return result, matchLevel, hclvl
 end

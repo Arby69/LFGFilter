@@ -36,7 +36,7 @@ if (L) then
 	L["RK-Tokens"] = { "kral", "kdk" }
 
 	L["The Scarlet Monastery"] = "Scharlachrotes Kloster"
-	L["MONASTERY-Tokens"] = { "kloster", "scharlachrotes" }
+	L["SM-Tokens"] = { "kloster", "scharlachrotes" }
 
 	L["The Scarlet Monastery: Graveyard"] = "Scharlachrotes Kloster: Friedhof"
 	L["GY-Tokens"] = { "fh", "friedhof" }
@@ -150,7 +150,7 @@ if (L) then
 
 	L["Shattered Halls"] = "Zerschmetterte Hallen"
 	L["SHH-Tokens"] = { "zh", "zersch.*hallen?", "a%schmet.*hallen?", "hallen" }
-	L["SHH-AntiTokens"] = { "set%a*", "blitz%a*" }
+	L["SHH-AntiTokens"] = { "set%a*", "blitz%a*", "stein%a*" }
 
 	L["Black Morass"] = "Der Schwarze Morast"
 	L["MORASS-Tokens"] = { "mor+ast", "hdz.*2", "zeit.*2" }
@@ -238,7 +238,7 @@ if (L) then
   L["OCU-Tokens"] = {}
 
   L["Trial of the Champion"] = "Prüfung des Champions"
-  L["TOC-Tokens"] = { "pdc", "prüf%a*g" }
+  L["TOC-Tokens"] = { "pdc", "prüf[%wungdes]+cha[mpions]+" }
 
   L["Pit of Saron"] = "Grube von Saron"
   L["POS-Tokens"] = { "gvs", "grube" }
@@ -267,10 +267,13 @@ if (L) then
   L["OBSI-Tokens"] = { "obsi10[er]*", "obsi25[er]*" }
 
   L["Vault of Archavon"] = "Archavons Kammer"
-  L["VOA-Tokens"] = { "ak", "arch%a*von.*kammer", "spec+%A*[run]*" }
+  L["VOA-Tokens"] = { "ak", "arch%a*von.*kammer", "archa[vons]*" }
 
   L["Ulduar"] = "Ulduar"
   L["ULDUAR-Tokens"] = {}
+
+	L["Trial of the Crusader"] = "Prüfung des Kreuzfahrers"
+	L["TOCR-Tokens"] = { "pdk", "pdok", "pd[%(o%)]+k", "prü[%Wfungdesobrtn]+kreuz[fahres]+", "pdo?k25%a*", "pdo?k10%a*" }
 
   --L[""] = ""
   --L["-Tokens"] = {}
@@ -316,11 +319,18 @@ if (L) then
 
 	L["HeroTags"] = {
 		"heroisch",
+		"pdok%s*",
 	}
 	
 	L["HeroPlusTags"] = {}
 	
+	L["HeroBetaTags"] = {}
+	
+	L["HeroGammaTags"] = {}
+	
 	L["NonHeroTags"] = {}
+
+	L["PvP"] = {}
 
 	L["StopWords"] = {
 		"voll danke",

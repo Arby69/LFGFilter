@@ -15,6 +15,12 @@ LFGFilter.Filters = {
 	ADD_IRRELEVANT = 64,
 }
 
+LFGFilter.IsClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
+LFGFilter.IsBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+LFGFilter.IsWOTLK = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
+LFGFilter.IsSOD = C_Seasons and C_Seasons.GetActiveSeason and C_Seasons.GetActiveSeason() == Enum.SeasonID.SeasonOfDiscovery
+LFGFilter.MaxLevel = GetMaxPlayerLevel()
+
 local RED = { r = 255, g = 0, b = 0 }
 local ORANGE = { r = 255, g = 128, b = 64 }
 local YELLOW = { r = 255, g = 255, b = 0 }
@@ -50,7 +56,7 @@ local function filterFunc(self, event, arg1, ...)
 	if (lastMessage == arg1 and lastMsgId ~= arg11) then return true end -- identical message as before but new msgId? -> chat spam, filter it
 	lastMessage = arg1
 	lastMsgId = arg11
-	local found, hasLfm, hasLfg, dungeons, matchLevel, ishero, ishcplus = LFGFilter:ParseMessage(arg1)
+	local found, hasLfm, hasLfg, dungeons, matchLevel, hclvl, ispvp = LFGFilter:ParseMessage(arg1)
 	if (found) then
 		if (dungeons and #dungeons > 0) then
 			local playerId = arg12
@@ -64,7 +70,7 @@ local function filterFunc(self, event, arg1, ...)
 				Message = arg1,
 				Channel = channelbasename,
 				LastUpdate = GetTime(),
-				Heroic = ishero,
+				HCLevel = hclvl,
 			}
 		end
 		local filter = LFGFilter.Config.Filter
@@ -96,24 +102,44 @@ local function filterFunc(self, event, arg1, ...)
 			end
 		end
 		hcTag = ""
-		if ishcplus then
+		if hclvl == 3 then
 		  if addColor then
-				hcTag = "|cffff2020[HC+]|r"
+				hcTag = "|cffff0020[HC gamma]|r"
 			else
-				hcTag = "[HC+]"
+				hcTag = "[HC gamma]"
 			end
-		elseif ishero then
+		elseif hclvl == 2 then
+		  if addColor then
+				hcTag = "|cffff2020[HC beta]|r"
+			else
+				hcTag = "[HC beta]"
+			end
+		elseif hclvl == 1 then
+		  if addColor then
+				hcTag = "|cffff4020[HC alpha]|r"
+			else
+				hcTag = "[HC alpha]"
+			end
+		elseif hclvl == 0 then
 			if addColor then
 				hcTag = "|cffff6020[HC]|r"
 			else
 				hcTag = "[HC]"
 			end
 		end
+		pvpTag = ""
+		if ispvp then
+			if addColor then
+				pvpTag = "|cffff0000[PVP]|r"
+			else
+				pvpTag = "[PVP]"
+			end
+		end
 		if ((addTags and (matchLevel > 1)) or (addIrrelevant and (matchLevel < 2))) then
 			for _, n in pairs(dungeons) do 
 				local dungeon = LFGFilter.Dungeons[n]
 				if (dungeon) then
-					local d = LFGFilter:GetDifficulty(n, ishero)
+					local d = LFGFilter:GetDifficulty(n, hclvl)
 					--if (d > 1 and d < 5) then isRelevant = true end
 					local dname = "[" .. dungeon.LocalizedName .. "]"
 					if (addColor) then
@@ -125,7 +151,7 @@ local function filterFunc(self, event, arg1, ...)
 				end
 			end
 		end
-		local text = grey .. lfglfmTag .. " " .. (hcTag .. names .. " " .. arg1):trim()
+		local text = grey .. pvpTag .. lfglfmTag .. " " .. (hcTag .. names .. " " .. arg1):trim()
 		return false, text, ...
 	end
 	return

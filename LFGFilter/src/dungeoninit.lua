@@ -15,7 +15,7 @@ function LFGFilter:DefineDungeons()
 	if LFGFilter.IsSOD then
 		self:DefineSoDRaid("Blackfathom Deeps", 10, "Ashenvale", 25, 31, 39, { "bfd", "blackfath%a*", "fathom", "%a*om%W*deeps?" })
 		self:DefineSoDRaid("Gnomeregan", 10, "Dun Morogh", 40, 44, 49, { "gnome", "gnomer%a*", "gnomegeran", "gno%a*gan", "gnom" })
-		self:DefineSoDRaid("Temple of Atal'Hakkar", 20, "Swamp of Sorrows", 50, 54, 60, { "st", "toa", "atal", "hakkar", "sunken", "temple" }, { "aq.*", ".*qiraj" })
+		self:DefineSoDRaid("Temple of Atal'Hakkar", 20, "Swamp of Sorrows", 50, 54, 60, { "temple", "toa", "atal", "hakkar", "sunk[en]*" }, { "aq.*", ".*qiraj" })
 	else
 		self:DefineClassicDungeon("Blackfathom Deeps", "Ashenvale", LFGFilter.Factions.BOTH, 21, 24, 29, 32, { "bfd", "blackfath%a*", "fathom", "%a*om%W*deeps?" })
 		self:DefineClassicDungeon("Gnomeregan", "Dun Morogh", LFGFilter.Factions.BOTH, 26, 29, 35, 38, { "gnome", "gnomer%a*", "gnomegeran", "gno%a*gan" })

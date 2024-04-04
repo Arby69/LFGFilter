@@ -61,7 +61,7 @@ if L then
   L["MARA-Tokens"] = { }
 
   L["Temple of Atal'Hakkar"] = "Temple of Atal'Hakkar"
-  L["ST-Tokens"] = { }
+  L["TEMPLE-Tokens"] = { }
 
   L["Blackrock Depths"] = "Blackrock Depths"
   L["BRD-Tokens"] = { }

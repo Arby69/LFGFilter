@@ -64,7 +64,7 @@ if (L) then
 	L["MARA-Tokens"] = { } -- keine besonderen deutschen Kürzel
 
 	L["Temple of Atal'Hakkar"] = "Tempel von Atal'Hakkar"
-	L["ST-Tokens"] = { "vt", "versunkener", "tempel" }
+	L["TEMPLE-Tokens"] = { "vt", "versunkener", "tempel" }
 
 	L["Blackrock Depths"] = "Schwarzfelstiefen"
 	L["BRD-Tokens"] = { "brt", "sft", "blackr.*tiefen" }

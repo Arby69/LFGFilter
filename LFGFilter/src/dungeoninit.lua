@@ -62,7 +62,7 @@ function LFGFilter:DefineDungeons()
 		self:DefineDungeon("classic", "Bloodmoon PvP event", 40, "Stranglethorn Vale", LFGFilter.Factions.BOTH, 30, 30, 60, 60, 0, { "bloodmoon", "stv" }) 
 		if LFGFilter.MaxLevel == 25 then
 			table.insert(self.Dungeons["Ashenvale PvP event"].Tokens, "pvp%W?event")
-		elseif LFGFilter.MaxLevel == 40 then
+		elseif LFGFilter.MaxLevel >= 40 then
 			table.insert(self.Dungeons["Bloodmoon PvP event"].Tokens, "pvp%W?event")
 		end
 		self:DefineDungeon("classic", "Nightmare Incursion", 5, "Nightmare Portal", LFGFilter.Factions.BOTH, 25, 25, 60, 60, 0, { "nightmare", "nightm[are]*", "inc[ursion]+" })

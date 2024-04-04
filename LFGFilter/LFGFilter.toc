@@ -1,10 +1,10 @@
 ## Interface: 30401
-## Interface-Classic: 11501
+## Interface-Classic: 11502
 ## Interface-BCC: 20502
-## Interface-WoTLK: 30401
+## Interface-WoTLK: 30403
 ## Notes: Addings Dungeon Tags to LFG/LFM chat lines for better visualization
 ## Title: LFGFilter
-## Version: 1.4.1
+## Version: 1.4.3
 ## Author: Arby
 
 libs.xml

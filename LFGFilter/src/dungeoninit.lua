@@ -13,11 +13,13 @@ function LFGFilter:DefineDungeons()
 	self:DefineClassicDungeon("Shadowfang Keep", "Silverpine Forest", LFGFilter.Factions.BOTH, 19, 22, 27, 30, { "sfk", "shadowfang", "%a*fang%W*keep" })
 	self:DefineClassicDungeon("The Stockades", "Stormwind", LFGFilter.Factions.ALLIANCE, 21, 24, 29, 32, { "stocks", "stocka?d?e?s?" })
 	if LFGFilter.IsSOD then
-		self:DefineClassicDungeon("Blackfathom Deeps", "Ashenvale", LFGFilter.Factions.BOTH, 25, 25, 31, 40, { "bfd", "blackfath%a*", "fathom", "%a*om%W*deeps?" })
-		self:DefineClassicDungeon("Gnomeregan", "Dun Morogh", LFGFilter.Factions.BOTH, 40, 40, 43, 50, { "gnome", "gnomer%a*", "gnomegeran", "gno%a*gan" })
+		self:DefineSoDRaid("Blackfathom Deeps", 10, "Ashenvale", 25, 31, 39, { "bfd", "blackfath%a*", "fathom", "%a*om%W*deeps?" })
+		self:DefineSoDRaid("Gnomeregan", 10, "Dun Morogh", 40, 44, 49, { "gnome", "gnomer%a*", "gnomegeran", "gno%a*gan", "gnom" })
+		self:DefineSoDRaid("Temple of Atal'Hakkar", 20, "Swamp of Sorrows", 50, 54, 60, { "st", "toa", "atal", "hakkar", "sunken", "temple" }, { "aq.*", ".*qiraj" })
 	else
 		self:DefineClassicDungeon("Blackfathom Deeps", "Ashenvale", LFGFilter.Factions.BOTH, 21, 24, 29, 32, { "bfd", "blackfath%a*", "fathom", "%a*om%W*deeps?" })
 		self:DefineClassicDungeon("Gnomeregan", "Dun Morogh", LFGFilter.Factions.BOTH, 26, 29, 35, 38, { "gnome", "gnomer%a*", "gnomegeran", "gno%a*gan" })
+		self:DefineClassicDungeon("Temple of Atal'Hakkar", "Swamp of Sorrows", LFGFilter.Factions.BOTH, 47, 50, 57, 60, { "st", "toa", "atal", "hakkar", "sunken", "temple" }, { "aq.*", ".*qiraj" })
 	end
 	self:DefineClassicDungeon("Razorfen Kraul", "Barrens", LFGFilter.Factions.BOTH, 27, 30, 37, 40, { "rk", "rfk", "kraul" })
 	self:DefineClassicDungeon("The Scarlet Monastery: Graveyard", "Tirisfal Glades", LFGFilter.Factions.BOTH, 23, 26, 33, 45, { "gy", "g%a*yard", "sm%W*gy" })
@@ -28,7 +30,6 @@ function LFGFilter:DefineDungeons()
 	self:DefineClassicDungeon("Uldaman", "Badlands", LFGFilter.Factions.BOTH, 39, 42, 49, 52, { "ulda", "ulda[man]*" })
 	self:DefineClassicDungeon("Zul'Farak", "Tanaris", LFGFilter.Factions.BOTH, 41, 44, 51, 54, { "zf", "farr?ak", "zul%W?farr?ak" }) -- must remove "zul", now too many dungeon names colliding
 	self:DefineClassicDungeon("Maraudon", "Desolace", LFGFilter.Factions.BOTH, 43, 46, 52, 55, { "mara", "maura%a*", "mara%a*", "m%a+r%a+don" })
-	self:DefineClassicDungeon("Temple of Atal'Hakkar", "Swamp of Sorrows", LFGFilter.Factions.BOTH, 47, 50, 57, 60, { "st", "toa", "atal", "hakkar", "sunken", "temple" }, { "aq.*", ".*qiraj" })
 	self:DefineClassicDungeon("Blackrock Depths", "Blackrock Mountain", LFGFilter.Factions.BOTH, 50, 52, 60, 60, { "brd", "%a*rock%W*de*pt?h?s?", "imp.*run", "ony.*pre%a*" })
 	if not LFGFilter.IsBC then
 		table.insert(self.Dungeons["Blackrock Depths"].Tokens, "%Warena%W") -- add this only in Classic, not in TBC. In TBC "arena" is reserved for the Nagrand Arena quests
@@ -64,6 +65,7 @@ function LFGFilter:DefineDungeons()
 		elseif LFGFilter.MaxLevel == 40 then
 			table.insert(self.Dungeons["Bloodmoon PvP event"].Tokens, "pvp%W?event")
 		end
+		self:DefineDungeon("classic", "Nightmare Incursion", 5, "Nightmare Portal", LFGFilter.Factions.BOTH, 25, 25, 60, 60, 0, { "nightmare", "nightm[are]*", "inc[ursion]+" })
 	end
 
 	if not LFGFilter.IsClassic then

@@ -263,6 +263,12 @@ if L then
   L["Ulduar"] = "Ulduar"
   L["ULDUAR-Tokens"] = {}
 
+  L["Trial of the Crusader"] = "Trial of the Crusader"
+	L["TOCR-Tokens"] = {}
+
+  L["Icecrown Citadel"] = "Icecrown Citadel"
+	L["ICC-Tokens"] = {}
+
   --L[""] = ""
   --L["-Tokens"] = {}
 

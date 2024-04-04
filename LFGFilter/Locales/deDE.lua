@@ -114,6 +114,9 @@ if (L) then
 	L["Naxxramas"] = "Naxxramas"
 	L["NAXX-Tokens"] = { } -- keine besonderen deutschen Kürzel
 
+	L["Nightmare Incursion"] = "Albtraum-Überfall"
+	L["NIGHTMARE-Tokens"] = { "al[bp]traum" }
+
 	--------------------------------------------- BCC ----------------------------------------------
 	
 	L["Hellfire Ramparts"] = "Höllenfeuerbollwerk"
@@ -274,6 +277,9 @@ if (L) then
 
 	L["Trial of the Crusader"] = "Prüfung des Kreuzfahrers"
 	L["TOCR-Tokens"] = { "pdk", "pdok", "pd[%(o%)]+k", "prü[%Wfungdesobrtn]+kreuz[fahres]+", "pdo?k25%a*", "pdo?k10%a*" }
+
+	L["Icecrown Citadel"] = "Eiskronenzitadelle"
+	L["ICC-Tokens"] = {}
 
   --L[""] = ""
   --L["-Tokens"] = {}

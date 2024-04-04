@@ -6,6 +6,10 @@ function LFGFilter:DefineClassicRaid(name, size, location, minlevel, yellow, ...
 	return LFGFilter:DefineDungeon("classic", name, size, location, LFGFilter.Factions.BOTH, minlevel, yellow, 60, 60, 0, ...)
 end
 
+function LFGFilter:DefineSoDRaid(name, size, location, minlevel, green, maxlevel, ...)
+	return LFGFilter:DefineDungeon("classic", name, size, location, LFGFilter.Factions.BOTH, minlevel, minlevel, green, maxlevel, 0, ...)
+end
+
 function LFGFilter:DefineBCDungeon(name, location, minlevel, yellow, green, maxlevel, ...)
 	return LFGFilter:DefineDungeon("bc", name, 5, location, LFGFilter.Factions.BOTH, minlevel, yellow, green, maxlevel, 70, ...)
 end

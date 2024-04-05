@@ -58,7 +58,7 @@ function LFGFilter:DefineDungeons()
 	self:DefineDungeon("classic", "Arathi Basin", 10, "Hillsbrad Foothills", LFGFilter.Factions.BOTH, 30, 30, 100, 100, 0, { "ab", "arathi" })
 	
 	if LFGFilter.IsSOD then
-		self:DefineDungeon("classic", "Ashenvale PvP event", 40, "Ashenvale", LFGFilter.Factions.BOTH, 15, 15, 40, 40, 0, { "ashenvale", "lumber", "shredder", "cata" }) -- add the other 3 spots (I don't know their names)
+		self:DefineDungeon("classic", "Ashenvale PvP event", 40, "Ashenvale", LFGFilter.Factions.BOTH, 15, 15, 40, 40, 0, { "ashenvale", "lumber", "shredder", "cata" }, { "night[mare]+", "inc[ursion]+" }) -- add the other 3 spots (I don't know their names)
 		self:DefineDungeon("classic", "Bloodmoon PvP event", 40, "Stranglethorn Vale", LFGFilter.Factions.BOTH, 30, 30, 60, 60, 0, { "bloodmoon", "stv" }) 
 		if LFGFilter.MaxLevel == 25 then
 			table.insert(self.Dungeons["Ashenvale PvP event"].Tokens, "pvp%W?event")

@@ -9,17 +9,17 @@ function LFGFilter:DefineDungeons()
 	-- function LFGFilter:DefineClassicDungeon(name, location, faction, minlevel, yellow, green, maxlevel, tokens, antitokens)
 	self:DefineClassicDungeon("Ragefire Chasm", "Orgrimmar", LFGFilter.Factions.HORDE, 10, 13, 18, 21, { "rfc", "ragefire", "chasm" })
 	self:DefineClassicDungeon("Wailing Caverns", "Barrens", LFGFilter.Factions.BOTH, 12, 15, 20, 25, { "wc", "wailing", "caverns?" })
-	self:DefineClassicDungeon("The Deadmines", "Westfall", LFGFilter.Factions.BOTH, 15, 18, 23, 26, { "dm", "mines", "dea[dt]h?mine%a*" }, { "east", "north", "west" })
+	self:DefineClassicDungeon("The Deadmines", "Westfall", LFGFilter.Factions.BOTH, 15, 18, 23, 26, { "dm", "mines", "dea[dt]h?mine%a*", "deadm[ines]*" }, { "east", "north", "west" })
 	self:DefineClassicDungeon("Shadowfang Keep", "Silverpine Forest", LFGFilter.Factions.BOTH, 19, 22, 27, 30, { "sfk", "shadowfang", "%a*fang%W*keep" })
 	self:DefineClassicDungeon("The Stockades", "Stormwind", LFGFilter.Factions.ALLIANCE, 21, 24, 29, 32, { "stocks", "stocka?d?e?s?" })
 	if LFGFilter.IsSOD then
 		self:DefineSoDRaid("Blackfathom Deeps", 10, "Ashenvale", 25, 31, 39, { "bfd", "blackfath%a*", "fathom", "%a*om%W*deeps?" })
 		self:DefineSoDRaid("Gnomeregan", 10, "Dun Morogh", 40, 44, 49, { "gnome", "gnomer%a*", "gnomegeran", "gno%a*gan", "gnom" })
-		self:DefineSoDRaid("Temple of Atal'Hakkar", 20, "Swamp of Sorrows", 50, 54, 60, { "temple", "toa", "atal", "hakkar", "sunk[en]*" }, { "aq.*", ".*qiraj" })
+		self:DefineSoDRaid("Temple of Atal'Hakkar", 20, "Swamp of Sorrows", 50, 54, 60, { "temple", "toa", "atal", "hakkar", "sunk[en]*", "st" }, { "aq.*", ".*qiraj", "%d+%s*st", "pm st", "am st" })
 	else
 		self:DefineClassicDungeon("Blackfathom Deeps", "Ashenvale", LFGFilter.Factions.BOTH, 21, 24, 29, 32, { "bfd", "blackfath%a*", "fathom", "%a*om%W*deeps?" })
 		self:DefineClassicDungeon("Gnomeregan", "Dun Morogh", LFGFilter.Factions.BOTH, 26, 29, 35, 38, { "gnome", "gnomer%a*", "gnomegeran", "gno%a*gan" })
-		self:DefineClassicDungeon("Temple of Atal'Hakkar", "Swamp of Sorrows", LFGFilter.Factions.BOTH, 47, 50, 57, 60, { "temple", "toa", "atal", "hakkar", "sunken" }, { "aq.*", ".*qiraj" })
+		self:DefineClassicDungeon("Temple of Atal'Hakkar", "Swamp of Sorrows", LFGFilter.Factions.BOTH, 47, 50, 57, 60, { "temple", "toa", "atal", "hakkar", "sunken", "st" }, { "aq.*", ".*qiraj", "%d+%s*st", "pm st", "am st" })
 	end
 	self:DefineClassicDungeon("Razorfen Kraul", "Barrens", LFGFilter.Factions.BOTH, 27, 30, 37, 40, { "rk", "rfk", "kraul" })
 	self:DefineClassicDungeon("The Scarlet Monastery: Graveyard", "Tirisfal Glades", LFGFilter.Factions.BOTH, 23, 26, 33, 45, { "gy", "g%a*yard", "sm%W*gy" })
@@ -28,7 +28,7 @@ function LFGFilter:DefineDungeons()
 	self:DefineClassicDungeon("The Scarlet Monastery: Cathedral", "Tirisfal Glades", LFGFilter.Factions.BOTH, 32, 35, 42, 45, { "cath", "cath%a*", "sm%W*cath%a*" })
 	self:DefineClassicDungeon("Razorfen Downs", "Barrens", LFGFilter.Factions.BOTH, 37, 40, 47, 50, { "rd", "rfd", "downs", "raz%a*%Wdowns?" })
 	self:DefineClassicDungeon("Uldaman", "Badlands", LFGFilter.Factions.BOTH, 39, 42, 49, 52, { "ulda", "ulda[man]*" })
-	self:DefineClassicDungeon("Zul'Farak", "Tanaris", LFGFilter.Factions.BOTH, 41, 44, 51, 54, { "zf", "farr?ak", "zul%W?farr?ak" }) -- must remove "zul", now too many dungeon names colliding
+	self:DefineClassicDungeon("Zul'Farak", "Tanaris", LFGFilter.Factions.BOTH, 41, 44, 51, 54, { "zf", "farr?ak", "zul%W?farr?ak", "z'f" }) -- must remove "zul", now too many dungeon names colliding
 	self:DefineClassicDungeon("Maraudon", "Desolace", LFGFilter.Factions.BOTH, 43, 46, 52, 55, { "mara", "maura%a*", "mara%a*", "m%a+r%a+don" })
 	self:DefineClassicDungeon("Blackrock Depths", "Blackrock Mountain", LFGFilter.Factions.BOTH, 50, 52, 60, 60, { "brd", "%a*rock%W*de*pt?h?s?", "imp.*run", "ony.*pre%a*" })
 	if not LFGFilter.IsBC then
